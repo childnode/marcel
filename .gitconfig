@@ -9,7 +9,9 @@
 	nffmerge = merge --no-ff --no-commit
     ffmerge = merge --ff-only
     llog = log --branches --graph --decorate=full
+    llogr = log --branches --graph --decorate=full --remotes
+    tags = tag -ln
     br   = branch -avv
 [user]
 	name = Marcel Silberhorn
-	email = silberhorn@mediaman.net
+	email = marcel.silberhorn@mediaman-technology.de

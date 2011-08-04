@@ -86,9 +86,12 @@ function cd
         if [ "$isColoredBranch" == "auto" ]; then
             echo -ne $NO_COLOR;
         fi
+        echo -e $BLUE" == UPDATING == "$NO_COLOR
         git fetch --all -p
-        git branch -avv
+        echo -e $BLUE" == BRANCHES == "$NO_COLOR
+        git br
         echo -ne $NO_COLOR
+        echo -e $BLUE" == SOURCES  == "$NO_COLOR
         remote=$(git config --get remote.origin.url)
         if [ -n "$remote" ]; then
             echo -e $RED"cloned from GIT: "$BLUE$remote$NO_COLOR
@@ -97,6 +100,9 @@ function cd
         if [ -n "$remote" ]; then
             echo -e $RED"cloned from SVN: "$BLUE$remote$NO_COLOR
         fi
+        echo -e $BLUE" ===  TAGS  === "$NO_COLOR
+        git tags | awk 'BEGIN { OFS="\t\t" } {print "   "$1; $1=""; OFS=" "; print "      "$0 }'
+        echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
     fi
     if [ -d .svn ]; then
         echo -e $RED"=> This is a SVN Repository from: "$BLUE$(svn info | grep ^URL | awk '{print $2}')$NO_COLOR
