@@ -4,6 +4,7 @@
 #export PS1="\e[1;32m\u\e[0;32m@\h:\e[1;32m\w\e[0;32m$\e[0m "
 #export PS1="\033[1;32m\u\033[0;32m@\h:\033[1;32m\w\033[0;32m$\033[0m "
 #export PS1="\n[\$(date +%F\" \"%H:%M:%S)] [return code: \[\033[0;31m\]"'($?)'"\[\033[0m\]] \[\033[1;32m\]\u\[\033[0m\]@\[\033[1;37m\]\h\[\033[0m\]:\w\n$0:$(if [ "$(id -u)" == "0" ]; then echo "#"; else echo "$"; fi)> "
+#export PS1="\[\033[1;37m\]$0:[return code: "'$(last_return_code=$?; if [ $last_return_code -eq 0 ];then echo "("$last_return_code")"; else echo "\[\033[0;31m\]("$last_return_code")"; fi)'"\[\033[1;37m\]]\n\n\[\033[1;37m\]$0:[\$(date +%F\" \"%H:%M:%S\ @%s)] \[\033[1;32m\]\u\[\033[0m\]@\h\n$0:\[\033[1;34m\]\w\[\033[0m\]\n$0:$(if [ $(id -u) -eq 0 ]; then echo '#'; else echo '$'; fi ) >"
 export PS1="\[\033[1;37m\]$0:[return code: "'$(last_return_code=$?; if [ $last_return_code -eq 0 ];then echo "("$last_return_code")"; else echo "\[\033[0;31m\]("$last_return_code")"; fi)'"\[\033[1;37m\]]\n\n\[\033[1;37m\]$0:[\$(date +%F\" \"%H:%M:%S\ @%s)] \[\033[1;32m\]\u\[\033[0m\]@\h\n$0:\[\033[1;34m\]\w\[\033[0m\]\n$0:$ "
 #export PS1="\u@\h:\w$USERSIGN "
 #export PS1="\w\n\u$ "
@@ -58,8 +59,18 @@ alias setJava16="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/V
 
 alias prepareJavaKeystoreFor="\$JAVA_HOME/bin/keytool -genkey -keyalg RSA -alias"
 alias genTomcatKeystore="\$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA -keystore"
+alias cleanFirefoxSessions="cd /Users/silberhorn/Library/Application\ Support/Firefox/Profiles/ && find . -iname \".parentlock\" -exec rm {} \;"
 
 alias keepass="mono /Applications/KeePassX/KeePass2_portable/KeePass.exe"
+
+if [ -f /opt/local/etc/bash_completion ]; then
+    . /opt/local/etc/bash_completion
+    echo -e $GREEN"++ bash_completion loaded"$NO_COLOR
+    source ~/bash_completion.d/git-flow-completion.bash
+    echo -e $GREEN"++ git-flow-completion loaded"$NO_COLOR
+else
+    echo -e $RED"-- bash_completion missing"$NO_COLOR
+fi
 
 # adding local binaries
 export PATH=$PATH:~/bin
@@ -70,6 +81,11 @@ export PATH=$PATH:/opt/local/bin:/opt/local/sbin
 
 # adding atlassian plugin sdk
 export PATH=$PATH:~/Applications/atlassian-plugin-sdk-3.2.3/bin
+
+# adding atlassian plugin sdk
+if [ -f /etc/zce.rc ]; then
+    . /etc/zce.rc
+fi
 
 function cd
 {
@@ -101,7 +117,10 @@ function cd
             echo -e $RED"cloned from SVN: "$BLUE$remote$NO_COLOR
         fi
         echo -e $BLUE" ===  TAGS  === "$NO_COLOR
-        git tags | awk 'BEGIN { OFS="\t\t" } {print "   "$1; $1=""; OFS=" "; print "      "$0 }'
+        # git tags | awk 'BEGIN { OFS="\t\t" } {print "   "$1; $1=""; OFS=" "; print "      "$0 }'
+        git tags | awk 'BEGIN { OFS="\t" } {tagName=$1; $1=""; OFS=" "; print tagName"\t"$0 }'
+        echo -e $BLUE" ===  Merged / UnMerged branches  === "$NO_COLOR
+        git show-merges
         echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
     fi
     if [ -d .svn ]; then
@@ -110,6 +129,29 @@ function cd
     if [ -d CVS ]; then
         echo -e $RED"=> This is a CVS Repository"$NO_COLOR
     fi
+}
+
+function mkdir
+{
+    mkdircmd="$(which mkdir)"
+    $mkdircmd "$@"
+    mkExitCode=$?
+
+    if [ $mkExitCode != 0 ]; then
+        return $mkExitCode
+    fi
+
+    for mkdnewdir in "$@"; do
+        if [ -d "$mkdnewdir" ]; then
+            read -p "change to new directory '${mkdnewdir}'? [Y/n] ";
+            if [ "$REPLY" == "n" -o "$REPLY" == "N" -o "$REPLY" == "NO" -o "$REPLY" == "no" ]; then
+                continue;
+            fi
+            cd $mkdnewdir;
+            return $mkExitCode;
+        fi
+    done
+    return $mkExitCode;
 }
 
 function nowrap { export COLS=218 ; cut -c- ; unset COLS ; }
