@@ -11,7 +11,15 @@
     llog = log --branches --graph --decorate=full
     llogr = log --branches --graph --decorate=full --remotes
     tags = tag -ln
-    br   = branch -avv
+    br = branch -avv
+    unstage = reset HEAD --
+    untrack = rm --cached
 [user]
 	name = Marcel Silberhorn
 	email = coder@childno.de
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
