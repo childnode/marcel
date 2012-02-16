@@ -66,7 +66,7 @@ alias keepass="mono /Applications/KeePassX/KeePass2_portable/KeePass.exe"
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
     echo -e $GREEN"++ bash_completion loaded"$NO_COLOR
-    source ~/bash_completion.d/git-flow-completion.bash
+    source ~/Applications/bash_completion.d/git-flow-completion.bash
     echo -e $GREEN"++ git-flow-completion loaded"$NO_COLOR
 else
     echo -e $RED"-- bash_completion missing"$NO_COLOR
@@ -103,7 +103,10 @@ function cd
             echo -ne $NO_COLOR;
         fi
         echo -e $BLUE" == UPDATING == "$NO_COLOR
-        git fetch --all -p
+        git fetch --all -p -t
+        if [ $? -ne 0 ]; then
+            read -p "fetch failed! [hit ENTER] "
+        fi
         echo -e $BLUE" == BRANCHES == "$NO_COLOR
         git br
         echo -ne $NO_COLOR
@@ -120,7 +123,8 @@ function cd
         # git tags | awk 'BEGIN { OFS="\t\t" } {print "   "$1; $1=""; OFS=" "; print "      "$0 }'
         git tags | awk 'BEGIN { OFS="\t" } {tagName=$1; $1=""; OFS=" "; print tagName"\t"$0 }'
         echo -e $BLUE" ===  Merged / UnMerged branches  === "$NO_COLOR
-        git show-merges
+        git show-remote-merges
+        git wtf
         echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
     fi
     if [ -d .svn ]; then
