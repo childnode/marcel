@@ -1,7 +1,6 @@
 #!/bin/bash
-export localRepo=~/Repositories/Daimler/VehicleSuite;
-export remoteRepo=~/Repositories/Daimler/emb.daimlerchrysler.com/trunk/;
-#export remoteRepo=~/Desktop/Backup/Repositories/Daimler/svn-emb.daimlerchrysler.com/DSCneu/branches/10.1.0/;
+export localRepo=$1;
+export remoteRepo=$2;
 export startCwd=$CWD;
 cd $localRepo;
 for f in $(find . -type f -not -wholename "*\.git/*" -not -wholename "*\.metadata/*"); do
