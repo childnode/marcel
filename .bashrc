@@ -56,6 +56,8 @@ alias tbz="tar -cjvf"
 alias setJava14="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/1.4/Home/'"
 alias setJava15="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home/'"
 alias setJava16="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/'"
+#alias setJava="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/Current/Home/'"
+alias setJavaJDK="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/'"
 
 alias prepareJavaKeystoreFor="\$JAVA_HOME/bin/keytool -genkey -keyalg RSA -alias"
 alias genTomcatKeystore="\$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA -keystore"
@@ -124,7 +126,7 @@ function cd
         git tags | awk 'BEGIN { OFS="\t" } {tagName=$1; $1=""; OFS=" "; print tagName"\t"$0 }'
         echo -e $BLUE" ===  Merged / UnMerged branches  === "$NO_COLOR
         git show-remote-merges
-        git wtf
+        git wtf -A
         echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
     fi
     if [ -d .svn ]; then
@@ -159,3 +161,5 @@ function mkdir
 }
 
 function nowrap { export COLS=218 ; cut -c- ; unset COLS ; }
+
+setJavaJDK
