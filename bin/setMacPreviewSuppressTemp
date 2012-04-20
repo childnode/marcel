@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "com.apple.Preview NSDocumentSuppressTempVersionStoreWarning was "$(defaults read com.apple.Preview NSDocumentSuppressTempVersionStoreWarning )
+defaults write com.apple.Preview NSDocumentSuppressTempVersionStoreWarning -bool true

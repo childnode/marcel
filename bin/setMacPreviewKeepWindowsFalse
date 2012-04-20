@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "com.apple.Preview NSQuitAlwaysKeepsWindows was "$(defaults read com.apple.Preview NSQuitAlwaysKeepsWindows )
+defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false

@@ -1,0 +1,2 @@
+#!/bin/bash
+MAVEN_OPTS="$JAVA_OPTS" mvn jetty:run

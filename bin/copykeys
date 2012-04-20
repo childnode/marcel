@@ -1,0 +1,8 @@
+#!/bin/bash
+cat ~/.ssh/*.pub ~/.ssh/rootUsers/*.pub > /tmp/authorized_keys2.$$
+
+for serverip in $(cat $(dirname $0)/copykeys.root.list); do
+    echo "== Copy authorized keys to ${serverip}"
+    scp /tmp/authorized_keys2.$$ root@${serverip}:~/.ssh/authorized_keys2
+    echo ""
+done
