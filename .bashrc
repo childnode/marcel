@@ -5,7 +5,7 @@
 #export PS1="\033[1;32m\u\033[0;32m@\h:\033[1;32m\w\033[0;32m$\033[0m "
 #export PS1="\n[\$(date +%F\" \"%H:%M:%S)] [return code: \[\033[0;31m\]"'($?)'"\[\033[0m\]] \[\033[1;32m\]\u\[\033[0m\]@\[\033[1;37m\]\h\[\033[0m\]:\w\n$0:$(if [ "$(id -u)" == "0" ]; then echo "#"; else echo "$"; fi)> "
 #export PS1="\[\033[1;37m\]$0:[return code: "'$(last_return_code=$?; if [ $last_return_code -eq 0 ];then echo "("$last_return_code")"; else echo "\[\033[0;31m\]("$last_return_code")"; fi)'"\[\033[1;37m\]]\n\n\[\033[1;37m\]$0:[\$(date +%F\" \"%H:%M:%S\ @%s)] \[\033[1;32m\]\u\[\033[0m\]@\h\n$0:\[\033[1;34m\]\w\[\033[0m\]\n$0:$(if [ $(id -u) -eq 0 ]; then echo '#'; else echo '$'; fi ) >"
-export PS1="\[\033[1;37m\]$0:[return code: "'$(last_return_code=$?; if [ $last_return_code -eq 0 ];then echo "("$last_return_code")"; else echo "\[\033[0;31m\]("$last_return_code")"; fi)'"\[\033[1;37m\]]\n\n\[\033[1;37m\]$0:[\$(date +%F\" \"%H:%M:%S\ @%s)] \[\033[1;32m\]\u\[\033[0m\]@\h\n$0:\[\033[1;34m\]\w\[\033[0m\]\n$0:$ "
+export PS1="\[\033[1;37m\]$0:[return code: "'$(last_return_code=$?; if [ $last_return_code -eq 0 ];then echo "("$last_return_code")"; else echo "\[\033[0;31m\]("$last_return_code")"; fi)'"\[\033[1;37m\]]\n\n\[\033[1;37m\]$0:[\$(date +%F\" \"%H:%M:%S\ @%s)] \[\033[1;32m\]\u\[\033[0m\]@\h\n$0:\[\033[1;34m\]\w\[\033[0m\]\n$0:"$(if [ "$(id -u)" -eq 0 ]; then echo "#"; else echo "$"; fi)" "
 #export PS1="\u@\h:\w$USERSIGN "
 #export PS1="\w\n\u$ "
 #export PS1="\w$ "
@@ -18,21 +18,47 @@ export     WHITE="\033[1;37m"
 export  NO_COLOR="\033[0m"
 
 
-# You may uncomment the following lines if you want `ls' to be colorized:
+# activate colors in xterm
 export TERM=xterm-color
+# activate console colors for OS X / FreeBSD
 export CLICOLOR=true
-#export LSCOLORS=FxGxdxhxcxbxexcxcxFxFx               # Rot
-#export LSCOLORS=hxfxcxdxBxegedabagacad              # Grau/Weiss
-export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx              # Blau
+
+## Default colors for console
+## http://www.napolitopia.com/2010/03/lscolors-in-osx-snow-leopard-for-dummies/
+## order: 
+##              DIR
+##              | SYM_LINK
+##              | | SOCKET
+##              | | | PIPE
+##              | | | | EXE
+##              | | | | | BLOCK_SP
+##              | | | | | | CHAR_SP
+##              | | | | | | | EXE_SUID
+##              | | | | | | | EXE_GUID
+##              | | | | | | | | | DIR_STICKY
+##              | | | | | | | | | | DIR_WO_STICKY
+##              | | | | | | | | | | |
+export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx
+#export LSCOLORS=FxGxdxhxcxbxexcxcxFxFx
+#export LSCOLORS=hxfxcxdxBxegedabagacad
+
+## Alternative LS_COLORS
+## seems not to work on OS X / FreeBSD
+## http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors
+#export LS_COLORS="ow=01;90:di=01;90;mi=31"
+
 export EDITOR=vim
 
 alias ll='ls -lA'
 alias l='ls -la'
+
 #
 # Some more alias to avoid making mistakes:
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias ln="ln -i"
+
 alias ssh="ssh -A"
 alias sshx="ssh -X"
 
