@@ -1,12 +1,12 @@
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+    diff = auto
+    status = auto
+    branch = auto
 [alias]
-	st = status
+    st = status
     ci = commit
     co = checkout
-	nffmerge = merge --no-ff --no-commit
+    nffmerge = merge --no-ff --no-commit
     ffmerge = merge --ff-only
     llog = log --branches --graph --decorate=full
     llogr = log --branches --graph --decorate=full --remotes
@@ -21,12 +21,13 @@
     wtmr = show-remote-merges
     gcp = gc --aggressive --prune=0
     track = branch --set-upstream
+    poh = push origin HEAD
 [user]
-	name = Marcel Silberhorn
-	email = coder@childno.de
+    name = Marcel Silberhorn
+    email = coder@childno.de
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
