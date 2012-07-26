@@ -75,6 +75,8 @@ alias egrep="egrep --color"
 alias fgrep="fgrep --color"
 alias p="popd > /dev/null"
 
+alias tree="tree -Aa"
+
 alias rsync="rsync -avH --progress"
 alias tgz="tar -czvf"
 alias tbz="tar -cjvf"
@@ -123,6 +125,11 @@ function cd
         pushd . > /dev/null
     fi
     $cdcmd "$@"
+    cdExitCode=$?
+
+    if [ $cdExitCode != 0 ]; then
+        return $cdExitCode
+    fi
 
     if [ -d .git ]; then
         isColoredBranch=$(git config --get color.branch)
