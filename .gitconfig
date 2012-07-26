@@ -19,6 +19,8 @@
     unignore = update-index --no-assume-unchanged
     wtm = show-merges
     wtmr = show-remote-merges
+    gcp = gc --aggressive --prune=0
+    track = branch --set-upstream
 [user]
 	name = Marcel Silberhorn
 	email = coder@childno.de
