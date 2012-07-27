@@ -1,0 +1,4 @@
+if [ -f /etc/zce.rc ]; then
+    . /etc/zce.rc
+fi
+

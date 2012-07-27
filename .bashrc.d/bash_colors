@@ -1,0 +1,36 @@
+export      BLUE="\033[0;34m"
+export      GREEN="\033[0;32m"
+export       RED="\033[0;31m"
+export LIGHT_RED="\033[1;31m"
+export     WHITE="\033[1;37m"
+export  NO_COLOR="\033[0m"
+
+# activate colors in xterm
+export TERM=xterm-color
+# activate console colors for OS X / FreeBSD
+export CLICOLOR=true
+
+## Default colors for console
+## http://www.napolitopia.com/2010/03/lscolors-in-osx-snow-leopard-for-dummies/
+## order: 
+##              DIR
+##              | SYM_LINK
+##              | | SOCKET
+##              | | | PIPE
+##              | | | | EXE
+##              | | | | | BLOCK_SP
+##              | | | | | | CHAR_SP
+##              | | | | | | | EXE_SUID
+##              | | | | | | | EXE_GUID
+##              | | | | | | | | | DIR_STICKY
+##              | | | | | | | | | | DIR_WO_STICKY
+##              | | | | | | | | | | |
+export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx
+#export LSCOLORS=FxGxdxhxcxbxexcxcxFxFx
+#export LSCOLORS=hxfxcxdxBxegedabagacad
+
+## Alternative LS_COLORS
+## seems not to work on OS X / FreeBSD
+## http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors
+#export LS_COLORS="ow=01;90:di=01;90;mi=31"
+
