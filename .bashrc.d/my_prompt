@@ -1,4 +1,10 @@
 my_prompt() {
-    echo -n "\[\033[1;37m\]$0:[return code: "'$(last_return_code=$?; if [ $last_return_code -eq 0 ];then echo "("$last_return_code")"; else echo "\[\033[0;31m\]("$last_return_code")"; fi)'"\[\033[1;37m\]]"
-    echo -n "\n\n\[\033[1;37m\]$0:[\$(date +%F\" \"%H:%M:%S\ @%s)] \[\033[1;32m\]\u\[\033[0m\]@\h\n$0:\[\033[1;34m\]\w\[\033[0m\]\n$0:"$(if [ "$(id -u)" -eq 0 ]; then echo "#"; else echo "$"; fi)" "
+    last_return_code=$?;
+    last_return_code_out="("$last_return_code")"
+    if [ $last_return_code -ne 0 ]; then
+        last_return_code_out="\[\033[0;31m\]("$last_return_code")";
+    fi
+    ## output return code
+    echo -ne "\033[1;37m$0:[return code: $last_return_code_out\033[1;37m]\n\n"$NO_COLOR
+    echo -ne "\033[1;37m$0:$NO_COLOR$(git_prompt)\033[1;34m$PWD\033[0m\n"
 }

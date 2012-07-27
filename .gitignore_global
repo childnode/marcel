@@ -2,3 +2,6 @@
 *.swp
 .DS_Store
 .thumbnails
+.hgignore_global
+.hgignore
+.svnignore
