@@ -16,6 +16,7 @@
 /.javafx_eula_accepted
 /.keepassx/
 /.keystore
+/.lesshst
 /.m2
 /.m2/
 /.mono/
@@ -25,6 +26,7 @@
 /.serverauth.*
 /.sh_history
 /.sqldeveloper/*Log.xml*
+/.sqlite_history
 /.ssh/id_rsa
 /.ssh/id_rsa.ppk
 /.ssh/known_hosts

@@ -13,5 +13,5 @@ git_prompt ()
        git_color=${c_git_dirty}
    fi
 
-   echo " [$git_color$git_branch${c_reset}]"
+   echo "you are in git branch [$git_color$git_branch${c_reset}]"
 }
