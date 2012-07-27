@@ -1,0 +1,2 @@
+alias tgz="tar -czvf"
+alias tbz="tar -cjvf"

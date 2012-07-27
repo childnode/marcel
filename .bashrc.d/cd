@@ -1,0 +1,52 @@
+function cd
+{
+    cdcmd="builtin cd"
+
+    if [ "$(echo $@)" != "-" ]; then
+        pushd . > /dev/null
+    fi
+    $cdcmd "$@"
+    cdExitCode=$?
+
+    if [ $cdExitCode != 0 ]; then
+        return $cdExitCode
+    fi
+
+    if [ -d .git ]; then
+        isColoredBranch=$(git config --get color.branch)
+        echo -e $RED"=> This is a GIT Repository"
+        if [ "$isColoredBranch" == "auto" ]; then
+            echo -ne $NO_COLOR;
+        fi
+        echo -e $BLUE" == UPDATING == "$NO_COLOR
+        git fetch --all -p -t
+        if [ $? -ne 0 ]; then
+            read -p "fetch failed! [hit ENTER] "
+        fi
+        echo -e $BLUE" == BRANCHES == "$NO_COLOR
+        git br
+        echo -ne $NO_COLOR
+        echo -e $BLUE" == SOURCES  == "$NO_COLOR
+        remote=$(git config --get remote.origin.url)
+        if [ -n "$remote" ]; then
+            echo -e $RED"cloned from GIT: "$BLUE$remote$NO_COLOR
+        fi
+        remote=$(git config --get svn-remote.svn.url)
+        if [ -n "$remote" ]; then
+            echo -e $RED"cloned from SVN: "$BLUE$remote$NO_COLOR
+        fi
+        echo -e $BLUE" ===  TAGS  === "$NO_COLOR
+        # git tags | awk 'BEGIN { OFS="\t\t" } {print "   "$1; $1=""; OFS=" "; print "      "$0 }'
+        git tags | awk 'BEGIN { OFS="\t" } {tagName=$1; $1=""; OFS=" "; print tagName"\t"$0 }'
+        echo -e $BLUE" ===  Merged / UnMerged branches  === "$NO_COLOR
+        git show-remote-merges
+        git wtf -A
+        echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
+    fi
+    if [ -d .svn ]; then
+        echo -e $RED"=> This is a SVN Repository from: "$BLUE$(svn info | grep ^URL | awk '{print $2}')$NO_COLOR
+    fi
+    if [ -d CVS ]; then
+        echo -e $RED"=> This is a CVS Repository"$NO_COLOR
+    fi
+}

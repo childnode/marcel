@@ -1,0 +1,22 @@
+function mkdir
+{
+    mkdircmd="$(which mkdir)"
+    $mkdircmd "$@"
+    mkExitCode=$?
+
+    if [ $mkExitCode != 0 ]; then
+        return $mkExitCode
+    fi
+
+    for mkdnewdir in "$@"; do
+        if [ -d "$mkdnewdir" ]; then
+            read -p "change to new directory '${mkdnewdir}'? [Y/n] ";
+            if [ "$REPLY" == "n" -o "$REPLY" == "N" -o "$REPLY" == "NO" -o "$REPLY" == "no" ]; then
+                continue;
+            fi
+            cd $mkdnewdir;
+            return $mkExitCode;
+        fi
+    done
+    return $mkExitCode;
+}

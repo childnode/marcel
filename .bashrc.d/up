@@ -1,0 +1,2 @@
+# up -> cd up n directories with: up n
+up() { [ $(( $1 + 0 )) -gt 0 ] && cd $(eval "printf '../'%.0s {1..$1}"); }

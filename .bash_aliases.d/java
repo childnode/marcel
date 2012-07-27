@@ -1,0 +1,1 @@
+alias prepareJavaKeystoreFor="\$JAVA_HOME/bin/keytool -genkey -keyalg RSA -alias"

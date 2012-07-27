@@ -49,49 +49,9 @@ export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx
 
 export EDITOR=vim
 
-alias ll='ls -lA'
-alias l='ls -la'
-
-#
-# Some more alias to avoid making mistakes:
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias ln="ln -i"
-
-alias ssh="ssh -A"
-alias sshx="ssh -X"
-
-alias ..="cd .."
-alias ...="cd ../.."
-
-alias svnlastchange="svn di -r 'PREV':'HEAD'"
-alias daimlersvn="cd ~/Repositories/emb.daimlerchrysler.com.old/DSCneu/trunk/"
-alias dscneu="cd ~/Documents/workspace/dscneu/"
-
-
-alias grep="grep --color"
-alias egrep="egrep --color"
-alias fgrep="fgrep --color"
-alias p="popd > /dev/null"
-
-alias tree="tree -Aa"
-
-alias rsync="rsync -avH --progress"
-alias tgz="tar -czvf"
-alias tbz="tar -cjvf"
-
-alias setJava14="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/1.4/Home/'"
-alias setJava15="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home/'"
-alias setJava16="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/'"
-#alias setJava="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/Current/Home/'"
-alias setJavaJDK="export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/'"
-
-alias prepareJavaKeystoreFor="\$JAVA_HOME/bin/keytool -genkey -keyalg RSA -alias"
-alias genTomcatKeystore="\$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA -keystore"
-alias cleanFirefoxSessions="cd /Users/silberhorn/Library/Application\ Support/Firefox/Profiles/ && find . -iname \".parentlock\" -exec rm {} \;"
-
-alias keepass="mono /Applications/KeePassX/KeePass2_portable/KeePass.exe"
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
@@ -117,82 +77,10 @@ if [ -f /etc/zce.rc ]; then
     . /etc/zce.rc
 fi
 
-function cd
-{
-    cdcmd="builtin cd"
-
-    if [ "$(echo $@)" != "-" ]; then
-        pushd . > /dev/null
-    fi
-    $cdcmd "$@"
-    cdExitCode=$?
-
-    if [ $cdExitCode != 0 ]; then
-        return $cdExitCode
-    fi
-
-    if [ -d .git ]; then
-        isColoredBranch=$(git config --get color.branch)
-        echo -e $RED"=> This is a GIT Repository"
-        if [ "$isColoredBranch" == "auto" ]; then
-            echo -ne $NO_COLOR;
-        fi
-        echo -e $BLUE" == UPDATING == "$NO_COLOR
-        git fetch --all -p -t
-        if [ $? -ne 0 ]; then
-            read -p "fetch failed! [hit ENTER] "
-        fi
-        echo -e $BLUE" == BRANCHES == "$NO_COLOR
-        git br
-        echo -ne $NO_COLOR
-        echo -e $BLUE" == SOURCES  == "$NO_COLOR
-        remote=$(git config --get remote.origin.url)
-        if [ -n "$remote" ]; then
-            echo -e $RED"cloned from GIT: "$BLUE$remote$NO_COLOR
-        fi
-        remote=$(git config --get svn-remote.svn.url)
-        if [ -n "$remote" ]; then
-            echo -e $RED"cloned from SVN: "$BLUE$remote$NO_COLOR
-        fi
-        echo -e $BLUE" ===  TAGS  === "$NO_COLOR
-        # git tags | awk 'BEGIN { OFS="\t\t" } {print "   "$1; $1=""; OFS=" "; print "      "$0 }'
-        git tags | awk 'BEGIN { OFS="\t" } {tagName=$1; $1=""; OFS=" "; print tagName"\t"$0 }'
-        echo -e $BLUE" ===  Merged / UnMerged branches  === "$NO_COLOR
-        git show-remote-merges
-        git wtf -A
-        echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
-    fi
-    if [ -d .svn ]; then
-        echo -e $RED"=> This is a SVN Repository from: "$BLUE$(svn info | grep ^URL | awk '{print $2}')$NO_COLOR
-    fi
-    if [ -d CVS ]; then
-        echo -e $RED"=> This is a CVS Repository"$NO_COLOR
-    fi
-}
-
-function mkdir
-{
-    mkdircmd="$(which mkdir)"
-    $mkdircmd "$@"
-    mkExitCode=$?
-
-    if [ $mkExitCode != 0 ]; then
-        return $mkExitCode
-    fi
-
-    for mkdnewdir in "$@"; do
-        if [ -d "$mkdnewdir" ]; then
-            read -p "change to new directory '${mkdnewdir}'? [Y/n] ";
-            if [ "$REPLY" == "n" -o "$REPLY" == "N" -o "$REPLY" == "NO" -o "$REPLY" == "no" ]; then
-                continue;
-            fi
-            cd $mkdnewdir;
-            return $mkExitCode;
-        fi
+if [ -d ~/.bashrc.d ]; then
+    for i in ~/.bashrc.d/*; do
+        . $i
     done
-    return $mkExitCode;
-}
-
-function nowrap { export COLS=218 ; cut -c- ; unset COLS ; }
+fi
 
 setJavaJDK
