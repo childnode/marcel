@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Author: http://serverfault.com/users/29328/raphink
+# Source: http://serverfault.com/questions/413231/how-to-get-all-fingerprints-for-ssh-authorized-keys2-file/413250
+
 function ssh-fingerprints() {
   local file="$1"
   while read l; do
