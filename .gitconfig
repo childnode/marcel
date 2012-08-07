@@ -22,6 +22,7 @@
     gcp = gc --aggressive --prune=0
     track = branch --set-upstream
     poh = push origin HEAD
+    nm = branch --no-merge
 [user]
     name = Marcel Silberhorn
     email = coder@childno.de
