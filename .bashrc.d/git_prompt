@@ -1,11 +1,30 @@
 # current branch in prompt:
 git_prompt ()
 {
-   if ! git rev-parse --git-dir > /dev/null 2>&1; then
+   gitDir=$(git rev-parse --git-dir 2>/dev/null)
+   gitAutoFetchTimeout=180
+   
+   if [ -z "$gitDir" ] ; then
        return 0
    fi
 
+   ## skip when in .git root where git-cd is called automatically
+   if [ -d .git ]; then
+       echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
+   else
+       if [ ! -f "$gitDir/GITBASH_LAST_AUTOFETCH" ]; then
+           echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
+       fi
+       if [ $gitAutoFetchTimeout -lt $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
+           ## fetch changes in background process
+           (git fetch -a 1>/dev/null &);
+           echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
+       fi
+   fi
+
+
    git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
+   git_track=$(git branch -lv 2>/dev/null| sed -n '/^\*/s/^\* //p' | awk '{trackStr=$3; sub("^\\[(ahead|behind)", "&", trackStr); if ( match(trackStr, "^\\[") ) { print trackStr" "$4;} }')
 
    if git diff --quiet 2>/dev/null >&2; then
        git_color="${c_git_clean}"
@@ -13,5 +32,5 @@ git_prompt ()
        git_color=${c_git_dirty}
    fi
 
-   echo "[$git_color$git_branch${c_reset}]"
+   echo "[$git_color$git_branch$git_track${c_reset}]"
 }
