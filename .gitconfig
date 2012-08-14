@@ -21,8 +21,10 @@
     wtmr = show-remote-merges
     gcp = gc --aggressive --prune=0
     track = branch --set-upstream
-    poh = push origin HEAD
+    poh = push -u origin HEAD
+    pohf = push --force -u origin HEAD
     nm = branch --no-merge
+    pulls = pull --recurse-submodules
 [user]
     name = Marcel Silberhorn
     email = coder@childno.de
@@ -34,3 +36,7 @@
     trustExitCode = true
 [core]
 	excludesfile = ~/.gitignore_global
+[branch]
+	autosetupmerge = true
+[fetch]
+	recurseSubmodules = true
