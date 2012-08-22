@@ -21,10 +21,25 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 if [ -f /opt/local/etc/bash_completion ]; then
+    echo -en $GREEN"+++ bash_completion ... "$NO_COLOR
+    profileStart=$(date +%s)
     . /opt/local/etc/bash_completion
-    echo -e $GREEN"+++ bash_completion loaded"$NO_COLOR
+    profileEnd=$(bc <<< "$(date +%s)-$profileStart")
+    if [ "$?" -eq 0 ]; then
+        echo -e $GREEN"loaded"$NO_COLOR" (${profileEnd}s)"
+    else
+        echo -e $RED"failed"$NO_COLOR" (${profileEnd}s)"
+    fi
+
+    echo -ne $GREEN"+++ git-flow-completion ... "$NO_COLOR
+    profileStart=$(date +%s)
     source ~/Applications/bash_completion.d/git-flow-completion.bash
-    echo -e $GREEN"+++ git-flow-completion loaded"$NO_COLOR
+    profileEnd=$(bc <<< "$(date +%s)-$profileStart")
+    if [ "$?" -eq 0 ]; then
+        echo -e $GREEN"loaded"$NO_COLOR" (${profileEnd}s)"
+    else
+        echo -e $RED"failed"$NO_COLOR" (${profileEnd}s)"
+    fi
 else
     echo -e $RED"--- bash_completion missing"$NO_COLOR
 fi
