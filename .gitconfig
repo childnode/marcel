@@ -25,6 +25,7 @@
     pohf = push --force -u origin HEAD
     nm = branch --no-merge
     pulls = pull --recurse-submodules
+    p = puffpu origin HEAD
 [user]
     name = Marcel Silberhorn
     email = coder@childno.de

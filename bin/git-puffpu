@@ -1,0 +1,7 @@
+#!/bin/bash
+git pull --ff-only
+if [ "$?" -ne 0 ]; then
+    echo -e $RED"no fastForward possible"$NO_COLOR;
+    git pull --ff
+fi
+git push
