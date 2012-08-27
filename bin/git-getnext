@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$1" == "-h" -o "$1" == "--help" ]; then
+    echo "git-getnext will get the next sha1 child id in the current branch following the given tree-ish" 1>&2
+    exit 1;
+fi
+
+sha1=$1
+nextSha1=$(awk "BEGIN { tst = \"$sha1\";"'out=""; while ("git log "tst"..'@{0}' 2>/dev/null" | getline) { if ($1=="commit") out=$2 } print out}')
+if [ -z "$nextSha1" ]; then
+    exit 1;
+fi
+echo $nextSha1
+exit 0;
