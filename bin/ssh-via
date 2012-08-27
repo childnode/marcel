@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh -At $1 "ssh $2"
