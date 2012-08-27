@@ -1,5 +1,6 @@
 *~
 *.swp
+Icon?
 .DS_Store
 .thumbnails
 .hgignore_global
