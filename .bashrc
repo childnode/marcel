@@ -3,6 +3,11 @@
 # adding local binaries
 export PATH=$PATH:~/bin
 
+# adding local work binaries
+for d in $(find ~/bin/ -type d -name work_*); do 
+    export PATH=$PATH:$d
+done
+
 # MacPorts Installer addition on 2010-10-28_at_14:50:11: adding an appropriate PATH variable for use with MacPorts.
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin
 # Finished adapting your PATH environment variable for use with MacPorts.
