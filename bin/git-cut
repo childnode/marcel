@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ "$1" == "-h" -o "$1" == "--help" ]; then
+    echo "$(basename $0) will let you PRINT OUT the commands YOU'LL NEED TO cut out the given commit. This uses/needs git-getnext!" 1>&2
+    exit 1;
+fi
+
+if [ ! -x "git-getnext" ]; then
+    echo "git-getnext not found" 1>&2
+    $(basename $0) --help
+    exit 1;
+fi
+
+currentSha1=$(git show | grep "^commit" | sed -e 's/^commit //')
+rebaseSha1=$1
+nextSha1=$(git-getnext $rebaseSha1)
+if [ -z "$nextSha1" ]; then
+    exit 1;
+fi
+echo "git reset "$rebaseSha1"^"
+echo "git cherry-pick --no-commit "$rebaseSha1
+echo "git cherry-pick $nextSha1..$currentSha1"
+exit 0;
