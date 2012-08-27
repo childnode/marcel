@@ -1,0 +1,5 @@
+#!/bin/bash
+find . -iname "*.orig" -exec rm {} \;
+find . -iname "*.rej" -exec rm {} \;
+find . -iname "*.swp" -exec rm {} \;
+find . -iname "*.swo" -exec rm {} \;

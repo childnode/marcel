@@ -1,0 +1,29 @@
+#!/bin/sh
+# vim: softtabstop=4;tabstop=4;shiftwidth=4
+# @author: silberhorn@mediaman-technology.de
+# @copyright
+
+if [ -z $1 ]; then
+    echo -e "Welcome to YAPE::Regex::Explain.\n (hint: escape literals with \\, so write \\\\w instead of \\w) ";
+    read -p " Please enter RegExp: "
+    export regExpCode=$REPLY
+else
+    echo "File $1 given"
+    if [ ! -f $1 ]; then
+        echo "FILE NOT READABLE!"
+        exit 1;
+    fi
+    export regExpCode=$(cat $1)
+fi;
+
+
+read -p "Please enter modifiers (if set/used): "
+export regExpMod=$REPLY
+
+perl <<EOPERL
+use YAPE::Regex::Explain;
+my \$re = qr{$regExpCode}$regExpMod;
+print YAPE::Regex::Explain->new(\$re)->explain();
+EOPERL
+
+exit 0;

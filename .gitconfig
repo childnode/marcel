@@ -1,0 +1,15 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	st = status
+    ci = commit
+    co = checkout
+	nffmerge = merge --no-ff --no-commit
+    ffmerge = merge --ff-only
+    llog = log --branches --graph --decorate=full
+    br   = branch -avv
+[user]
+	name = Marcel Silberhorn
+	email = silberhorn@mediaman.net
