@@ -6,7 +6,7 @@ if [ "$1" == "-h" -o "$1" == "--help" ]; then
 fi
 
 sha1=$1
-nextSha1=$(awk "BEGIN { tst = \"$sha1\";"'out=""; while ("git log "tst"..'@{0}' 2>/dev/null" | getline) { if ($1=="commit") out=$2 } print out}')
+nextSha1=$(git log --format=%H ${sha1}..'@{0}' | tail -n 1)
 if [ -z "$nextSha1" ]; then
     exit 1;
 fi
