@@ -25,10 +25,18 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f /opt/local/etc/bash_completion ]; then
+bc_cmd="/opt/local/etc/bash_completion"
+if [ -f "$(which brew)" ]; then
+    bc_cmd_brew=$(brew --prefix)"/etc/bash_completion"
+    if [ -f "$bc_cmd_brew" ]; then
+        bc_cmd=$bc_cmd_brew
+    fi
+fi
+
+if [ -f "$bc_cmd" ]; then
     echo -en $GREEN"+++ bash_completion ... "$NO_COLOR
     profileStart=$(date +%s)
-    . /opt/local/etc/bash_completion
+    . "$bc_cmd"
     profileEnd=$(bc <<< "$(date +%s)-$profileStart")
     if [ "$?" -eq 0 ]; then
         echo -e $GREEN"loaded"$NO_COLOR" (${profileEnd}s)"
