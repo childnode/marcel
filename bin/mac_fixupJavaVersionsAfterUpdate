@@ -1,0 +1,10 @@
+#!/bin/bash
+cd /System/Library/Frameworks/JavaVM.framework/Versions/
+ls -al
+sudo rm 1.5 1.5.0
+sudo rm 1.4 1.4.2
+sudo ln -s 1.4.2-apple 1.4.2
+sudo ln -s 1.4.2 1.4
+sudo ln -s 1.5.0-apple 1.5.0
+sudo ln -s 1.5.0 1.5
+ls -al
