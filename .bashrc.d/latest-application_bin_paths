@@ -1,0 +1,4 @@
+#!/bin/sh
+for i in $(find  ~/Applications/*-latest/bin -type d); do
+    export PATH=$PATH:$i
+done

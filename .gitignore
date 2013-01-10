@@ -48,7 +48,8 @@
 /Documents/
 /Downloads/
 /Dropbox/
-/Google Drive
+/Google\ Drive
+/SkyDrive
 /Library/
 /Movies/
 /Music/
@@ -64,3 +65,10 @@
 /ownCloud
 /vpd.properties
 /vpworkspace/
+/.netbeans/
+/NetBeansProjects/dcpocmymb/nbproject/private/
+/VirtualBox\ VMs
+/.vagrant.d
+/.csync
+/amps-standalone
+/.composer

@@ -12,9 +12,6 @@ done
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-# adding atlassian plugin sdk
-export PATH=$PATH:~/Applications/atlassian-plugin-sdk-3.2.3/bin
-
 if [ -d ~/.bashrc.d ]; then
     for i in ~/.bashrc.d/*; do
         . $i

@@ -1,0 +1,4 @@
+# adding atlassian plugin sdk
+#export PATH=$PATH:~/Applications/atlassian-plugin-sdk-3.2.3/bin
+export PATH=$PATH:~/Applications/atlassian-plugin-sdk-3.11/bin
+
