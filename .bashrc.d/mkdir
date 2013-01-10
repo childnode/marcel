@@ -14,7 +14,7 @@ function mkdir
             if [ "$REPLY" == "n" -o "$REPLY" == "N" -o "$REPLY" == "NO" -o "$REPLY" == "no" ]; then
                 continue;
             fi
-            cd $mkdnewdir;
+            cd "$mkdnewdir";
             return $mkExitCode;
         fi
     done
