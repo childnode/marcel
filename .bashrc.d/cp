@@ -1,0 +1,24 @@
+function cp
+{
+    [ -n "$DEBUG" ] && echo "v.0.1" 1>&2;
+    [ -n "$DEBUG" ] && echo "inspired by @marcdix (twitter) / @mdix (bitbucket)" 1>&2;
+    evalcmd="$(which cp)"
+    $evalcmd "$@"
+    evalExitCode=$?
+
+    if [ $evalExitCode != 0 ]; then
+        return $evalExitCode
+    fi
+
+    targetDir=${!#}
+    if [ -f "${!#}" ]; then
+        targetDir=$(dirname $targetDir)
+    fi
+    if [ -d "$targetDir" ]; then
+        read -p "change to directory '$targetDir'? (y/n [y]) ";
+        if [ "$REPLY" != "n" -a "$REPLY" != "N" -a "$REPLY" != "NO" -a "$REPLY" != "no" ]; then
+            cd "$targetDir";
+        fi
+    fi
+    return $evalExitCode;
+}
