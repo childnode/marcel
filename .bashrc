@@ -31,25 +31,39 @@ if [ -f "$(which brew)" ]; then
 fi
 
 if [ -f "$bc_cmd" ]; then
-    echo -en $GREEN"+++ bash_completion ... "$NO_COLOR
-    profileStart=$(date +%s)
-    . "$bc_cmd"
-    profileEnd=$(bc <<< "$(date +%s)-$profileStart")
-    if [ "$?" -eq 0 ]; then
-        echo -e $GREEN"loaded"$NO_COLOR" (${profileEnd}s)"
-    else
-        echo -e $RED"failed"$NO_COLOR" (${profileEnd}s)"
-    fi
+    echo -e $BLUE"+~~ bash_completion     ~loading bg~ "$NO_COLOR;
+    (
+        (
+            profileStart=$(date +%s);
+            . "$bc_cmd" 2>&1 > /dev/null;
+            cmdRetCode=$?
+            profileEnd=$(bc <<< "$(date +%s)-$profileStart");
+            [ -n "$DEBUG" -o "$cmdRetCode" -ne 0 ] && echo -en $GREEN"\n+++ bash_completion "$NO_COLOR;
+            if [ "$cmdRetCode" -eq 0 ]; then
+                [ -n "$DEBUG" ] && echo -e $GREEN"loaded in"$NO_COLOR" (${profileEnd}s)";
+            else
+                echo -e $RED"failed to load"$NO_COLOR" (${profileEnd}s)";
+            fi
+            [ -n "$DEBUG" -o "$cmdRetCode" -ne 0 ] && echo -en "$PS0 "
+        ) &
+    )
 
-    echo -ne $GREEN"+++ git-flow-completion ... "$NO_COLOR
-    profileStart=$(date +%s)
-    source ~/Applications/bash_completion.d/git-flow-completion.bash
-    profileEnd=$(bc <<< "$(date +%s)-$profileStart")
-    if [ "$?" -eq 0 ]; then
-        echo -e $GREEN"loaded"$NO_COLOR" (${profileEnd}s)"
-    else
-        echo -e $RED"failed"$NO_COLOR" (${profileEnd}s)"
-    fi
+    echo -e $BLUE"+~~ git-flow-completion ~loading bg~ "$NO_COLOR
+    (
+        (
+            profileStart=$(date +%s)
+            source ~/Applications/bash_completion.d/git-flow-completion.bash
+            cmdRetCode=$?
+            profileEnd=$(bc <<< "$(date +%s)-$profileStart")
+            [ -n "$DEBUG" -o "$cmdRetCode" -ne 0 ] && echo -en $GREEN"\n+++ git-flow-completion "$NO_COLOR;
+            if [ "$cmdRetCode" -eq 0 ]; then
+                [ -n "$DEBUG" ] && echo -e $GREEN"loaded in"$NO_COLOR" (${profileEnd}s)"
+            else
+                echo -e $RED"failed to load"$NO_COLOR" (${profileEnd}s)"
+            fi
+            [ -n "$DEBUG" -o "$cmdRetCode" -ne 0 ] && echo -en "$PS0 "
+        ) &
+    )
 else
     echo -e $RED"--- bash_completion missing"$NO_COLOR
 fi
