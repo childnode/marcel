@@ -1,0 +1,40 @@
+#!/bin/bash
+
+reverse=false
+if [ "$1" == "-r" ]; then
+    echo "reverse mode .., remove usernames" 1>&2
+    shift;
+    reverse=true
+fi
+
+echo "===== BEFORE ====="
+git remote -v;
+
+echo "===== CHANGES ====="
+if [ $reverse == true ]; then
+    for rmt in $(git remote -v | grep -i -e "https*://[^@]*@" | awk '{print $1}' | uniq); do
+        oldUrl=$(git remote -v | grep -i -e "^$rmt" | awk '{print $2}' | uniq);
+        newUrl=$(echo $oldUrl | sed -e "s/:\/\/[^@]*@/:\/\//");
+        echo -e "$rmt\t=>\t$oldUrl\t=>\t$newUrl";
+        git remote set-url        $rmt $newUrl $oldUrl;
+        git remote set-url --push $rmt $newUrl $oldUrl;
+        echo -e "\n"
+    done;
+else
+    for rmt in $(git remote -v | grep -i -e "https*://[^@]*/" | awk '{print $1}' | uniq); do
+        oldUrl=$(git remote -v | grep -i -e "^$rmt" | awk '{print $2}' | uniq);
+        read -p "what is your username for '${oldUrl}' [$(id -u -n)]: "
+        if [ -n "$READ" ]; then
+            user=$READ;
+        else
+            user=$(id -u -n);
+        fi
+        newUrl=$(echo $oldUrl | sed -e "s/:\/\//:\/\/${user}@/");
+        echo -e "$rmt\t=>\t$oldUrl\t=>\t$newUrl";
+        git remote set-url        $rmt $newUrl $oldUrl;
+        git remote set-url --push $rmt $newUrl $oldUrl;
+        echo -e "\n"
+    done;
+fi
+echo "===== AFTERWARDS ====="
+git remote -v
