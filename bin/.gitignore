@@ -8,9 +8,6 @@ git-svn-check-unpushed
 git-svn-clone-externals
 git-svn-externals-check
 git-svn-externals-update
-git-publish-branch
-git-rank-contributors
-git-show-merges
 idl2wrs
 mergecap
 play
@@ -21,8 +18,6 @@ text2pcap
 tshark
 wireshark
 work_*/
-git-wtf
-git-wt-add
 gti
 mate
 bamboo.sh
