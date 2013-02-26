@@ -11,6 +11,7 @@
     ffmerge = merge --ff-only
     llog = log --branches --graph --decorate=full
     llogr = log --branches --graph --decorate=full --remotes
+    filehist = log --branches --graph --decorate=full --remotes --follow
     tags = tag -ln
     br = branch -vv
     brr = branch -avv
