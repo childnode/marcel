@@ -9,14 +9,13 @@ git_prompt ()
    fi
 
    ## skip when in .git root where git-cd is called automatically
-   if [ -d .git ]; then
-       echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
-   else
+   if [ ! -d .git ]; then
        if [ ! -f "$gitDir/GITBASH_LAST_AUTOFETCH" ]; then
            echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
        fi
        if [ $gitAutoFetchTimeout -lt $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
            ## fetch changes in background process
+           echo $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)")
            (git fetch -a 2>&1 1>/dev/null &) &
            echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
        fi

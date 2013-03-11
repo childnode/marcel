@@ -12,15 +12,24 @@ function cd
         return $cdExitCode
     fi
 
-    if [ -d .git ]; then
+    gitDir=".git"
+    gitAutoFetchTimeout=180
+    if [ -d "$gitDir" ]; then
+        if [ -f "$gitDir/GITBASH_LAST_AUTOFETCH" -a $gitAutoFetchTimeout -ge $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
+            return $cdExitCode
+        fi
+        echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
+
         isColoredBranch=$(git config --get color.branch)
         echo -e $RED"=> This is a GIT Repository"
         if [ "$isColoredBranch" == "auto" ]; then
             echo -ne $NO_COLOR;
         fi
         echo -e $BLUE" == UPDATING == "$NO_COLOR
-        git fetch --all -p -t
+        gitFetchOk=false
+        git fetch --all -p -t && gitFetchOk=true
         if [ $? -ne 0 ]; then
+            gitFetchOk=false
             read -p "fetch failed! [hit ENTER] "
         fi
         echo -e $BLUE" == BRANCHES == "$NO_COLOR
@@ -38,10 +47,17 @@ function cd
         echo -e $BLUE" ===  TAGS  === "$NO_COLOR
         # git tags | awk 'BEGIN { OFS="\t\t" } {print "   "$1; $1=""; OFS=" "; print "      "$0 }'
         git tags | awk 'BEGIN { OFS="\t" } {tagName=$1; $1=""; OFS=" "; print tagName"\t"$0 }'
-        echo -e $BLUE" ===  Merged / UnMerged branches  === "$NO_COLOR
-        git show-remote-merges
-        git wtf -A
+
+        if [ "$gitFetchOk" == false ]; then
+            echo -e $RED" ===  Merged / UnMerged branches not reliable as long fetch failed === "$NO_COLOR
+            echo "... skipped";
+        else
+            echo -e $BLUE" ===  Merged / UnMerged branches  === "$NO_COLOR
+            git show-remote-merges
+            git wtf -A
+        fi
         echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
+        return $cdExitCode
     fi
     if [ -d .svn ]; then
         echo -e $RED"=> This is a SVN Repository from: "$BLUE$(svn info | grep ^URL | awk '{print $2}')$NO_COLOR
