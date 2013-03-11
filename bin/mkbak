@@ -4,12 +4,12 @@
 for item in ${@}; do
     if [ -d "${item}" ]; then
         if [ -z "$(which rsync)" ]; then
-            cp -a $(dirname ${item})/$(basename ${item}) $(dirname ${item})/$(basename ${item}).bak
+            cp -a $(dirname ${item})/$(basename ${item}){,.bak}
         else
-            rsync -avH --delete $(dirname ${item})/$(basename ${item})/ $(dirname ${item})/$(basename ${item}).bak/
+            rsync -avH --delete $(dirname ${item})/$(basename ${item})/{,.bak/}
         fi
     elif [ -f "${item}" ]; then
-        cp -i ${item} ${item}.bak
+        cp -i ${item}{,.bak}
     else
         echo $RED" - not a file or directory: ${item}"$NO_COLOR
     fi
