@@ -2,22 +2,9 @@
 git_prompt ()
 {
    gitDir=$(git rev-parse --git-dir 2>/dev/null)
-   gitAutoFetchTimeout=180
    
    if [ -z "$gitDir" ] ; then
        return 0
-   fi
-
-   ## skip when in .git root where git-cd is called automatically
-   if [ ! -d .git ]; then
-       if [ ! -f "$gitDir/GITBASH_LAST_AUTOFETCH" ]; then
-           echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
-       fi
-       if [ $gitAutoFetchTimeout -lt $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
-           ## fetch changes in background process
-           (git fetch -a 2>&1 1>/dev/null &) &
-           echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
-       fi
    fi
 
 
@@ -31,4 +18,5 @@ git_prompt ()
    fi
 
    echo "[$git_color$git_branch$git_track${c_reset}]"
+   return 0;
 }
