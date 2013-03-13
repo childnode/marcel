@@ -13,6 +13,10 @@ function cp
     targetDir=${!#}
     if [ -f "${!#}" ]; then
         targetDir=$(dirname $targetDir)
+    else
+        ## TODO: when only two parameters are given, ask for copy into or over the old directory
+        #echo read -p "target is a directory, should I make a copy"
+        echo ""
     fi
     if [ -d "$targetDir" -a ! "$targetDir" == "." ]; then
         read -p "change to directory '$targetDir'? (y/n [y]) ";

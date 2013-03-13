@@ -1,0 +1,19 @@
+bc_cmd="/opt/local/etc/bash_completion"
+if [ -f "$(which brew)" ]; then
+    bc_cmd_brew=$(brew --prefix)"/etc/bash_completion"
+    if [ -f "$bc_cmd_brew" ]; then
+        bc_cmd=$bc_cmd_brew
+    fi
+fi
+
+if [ -f "$bc_cmd" ]; then
+    . ~/.bashrc.d/helper/sourceCompletions.sh "bash_completion" $bc_cmd
+else
+    echo -e $RED"--- bash_completion missing"$NO_COLOR
+fi
+
+if [ -z "$EDITOR" ]; then
+    echo -e $BLUE"(!)"$GREEN" no preferred EDITOR set !"$NO_COLOR
+else
+    echo -e $GREEN"+++ preferred EDITOR is \`$EDITOR\`"$NO_COLOR
+fi

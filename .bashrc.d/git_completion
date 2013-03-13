@@ -1,0 +1,1 @@
+. ~/.bashrc.d/helper/sourceCompletions.sh "git-flow-completion" ~/Applications/bash_completion.d/git-flow-completion.bash
