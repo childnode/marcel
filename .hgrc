@@ -1,5 +1,5 @@
 [ui]
-username=Marcel Silberhorn <me@childno.de>
+username=Marcel Silberhorn <code2k13@childno.de>
 ignore=/Users/silberhorn/.hgignore_global
 [merge-tools]
 sourcetreemerge.gui=False

@@ -6,3 +6,8 @@ Icon?
 .hgignore_global
 .hgignore
 .svnignore
+
+.idea
+*.iml
+*.ipr
+*.iws

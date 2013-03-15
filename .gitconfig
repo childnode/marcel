@@ -26,15 +26,18 @@
     poh = push -u origin HEAD
     pohf = push --force -u origin HEAD
     nm = branch --no-merge
+    puff = pull --ff-only
     pulls = pull --recurse-submodules
     p = puffpu origin HEAD
+    pr = purepu origin HEAD
     cpu = puffpu --commit origin HEAD
+    cpru = purepu --commit origin HEAD
 [user]
     name = Marcel Silberhorn
     email = coder@childno.de
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
+    path =
 [mergetool "sourcetree"]
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
@@ -43,4 +46,21 @@
 [branch]
 	autosetupmerge = true
 [fetch]
-	recurseSubmodules = true
+    recurseSubmodules = true
+
+# [difftool "Kaleidoscope"]
+# 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+# [diff]
+# 	tool = Kaleidoscope
+# [difftool]
+# 	prompt = false
+#
+# [mergetool "Kaleidoscope"]
+# 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+# [mergetool]
+# 	prompt = false
+# [merge]
+# 	tool = Kaleidoscope
+
+[http]
+	sslVerify = false
