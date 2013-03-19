@@ -3,21 +3,19 @@
     status = auto
     branch = auto
 [alias]
-    st = status
+    #st = status
     ci = commit
     co = checkout
     f = fetch --all
     nffmerge = merge --no-ff --no-commit
     ffmerge = merge --ff-only
-    llog = log --branches --graph --decorate=full
-    llogr = log --branches --graph --decorate=full --remotes
     filehist = log --branches --graph --decorate=full --remotes --follow
     tags = tag -ln
     br = branch -vv
     brr = branch -avv
     unstage = reset HEAD --
     untrack = rm --cached
-    ignore = update-index --assume-unchanged
+    #ignore = update-index --assume-unchanged
     unignore = update-index --no-assume-unchanged
     wtm = show-merges
     wtmr = show-remote-merges
@@ -32,6 +30,61 @@
     pr = purepu origin HEAD
     cpu = puffpu --commit origin HEAD
     cpru = purepu --commit origin HEAD
+
+    ####################################################################################################
+    ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+    ####################################################################################################
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    le = log --oneline --decorate
+    llog = log --branches --graph --decorate=full
+    llogr = log --branches --graph --decorate=full --remotes
+    filelog = log -u
+    dl = "!git ll -1"
+    dlc = diff --cached HEAD^
+    dr  = "!f() { git diff "$1"^.."$1"; }; f"
+    lc  = "!f() { git ll "$1"^.."$1"; }; f"
+    diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+    f = "!git ls-files | grep -i"
+    grep = grep -Ii
+    gr = grep -Ii
+    gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+    la = "!git config -l | grep alias | cut -c 7-"
+    #done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+    ## called it 'ignore' in my version
+    assume = update-index --assume-unchanged
+    unassume = update-index --no-assume-unchanged
+    assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+    unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+    assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+    lasttag = describe --tags --abbrev=0
+    lt = describe --tags --abbrev=0
+    ours = "!f() { git co --ours $@ && git add $@; }; f"
+    theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+    cp = cherry-pick
+    st = status -s
+    cl = clone
+    #ci = commit
+    co = checkout
+    #br = branch 
+    diff = diff --word-diff
+    dc = diff --cached
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+    svnr = svn rebase
+    svnd = svn dcommit
+    svnl = svn log --oneline --show-commit
+    sl = stash list
+    sa = stash apply
+    ss = stash save
+    ####################################################################################################
 [user]
     name = Marcel Silberhorn
     email = coder@childno.de
@@ -42,25 +95,25 @@
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
 [branch]
-	autosetupmerge = true
+    autosetupmerge = true
 [fetch]
     recurseSubmodules = true
 
 # [difftool "Kaleidoscope"]
-# 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+#   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 # [diff]
-# 	tool = Kaleidoscope
+#   tool = Kaleidoscope
 # [difftool]
-# 	prompt = false
+#   prompt = false
 #
 # [mergetool "Kaleidoscope"]
-# 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+#   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 # [mergetool]
-# 	prompt = false
+#   prompt = false
 # [merge]
-# 	tool = Kaleidoscope
+#   tool = Kaleidoscope
 
 [http]
-	sslVerify = false
+    sslVerify = false
