@@ -1,0 +1,7 @@
+if [ -f /etc/zce.rc ]; then 
+    zendDYLD=$( unset DYLD_LIBRARY_PATH; source /etc/zce.rc; echo $DYLD_LIBRARY_PATH)
+    ZCE_PREFIX=$( source /etc/zce.rc; echo $ZCE_PREFIX)
+    export PATH=$ZCE_PREFIX/bin:$PATH
+
+    alias php="DYLD_LIBRARY_PATH=$zendDYLD php"
+fi
