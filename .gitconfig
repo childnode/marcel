@@ -15,14 +15,16 @@
     brr = branch -avv
     unstage = reset HEAD --
     untrack = rm --cached
-    #ignore = update-index --assume-unchanged
+    ignore = update-index --assume-unchanged
     unignore = update-index --no-assume-unchanged
     wtm = show-merges
     wtmr = show-remote-merges
     gcp = gc --aggressive --prune=0
     track = branch --set-upstream
     poh = push -u origin HEAD
+    pohtags = push origin refs/tags/*
     pohf = push --force -u origin HEAD
+    pohftags = push --force origin refs/tags/*
     nm = branch --no-merge
     puff = pull --ff-only
     pulls = pull --recurse-submodules
@@ -95,7 +97,8 @@
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
 [core]
-    excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [branch]
     autosetupmerge = true
 [fetch]
@@ -117,3 +120,5 @@
 
 [http]
     sslVerify = false
+[push]
+	default = simple
