@@ -1,0 +1,4 @@
+#originLANG=$LANG
+#originLOCALE=${LANG%.*}
+#originENCODING=${LANG#.*}
+#export LANG=en_EN.${originENCODING}
