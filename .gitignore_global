@@ -1,7 +1,15 @@
 *~
 *.swp
+
 Icon?
 .DS_Store
+.Spotlight-V100
+.Trashes
+.com.apple.timemachine.donotpresent
+.fseventsd
+
+Thumbs.db
+
 .thumbnails
 .hgignore_global
 .hgignore
