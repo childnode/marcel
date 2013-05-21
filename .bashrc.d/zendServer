@@ -4,4 +4,8 @@ if [ -f /etc/zce.rc ]; then
     export PATH=$ZCE_PREFIX/bin:$PATH
 
     alias php="DYLD_LIBRARY_PATH=$zendDYLD php"
+    alias php-cli="DYLD_LIBRARY_PATH=$zendDYLD php-cli"
+    alias pecl="DYLD_LIBRARY_PATH=$zendDYLD pecl"
+    alias pear="DYLD_LIBRARY_PATH=$zendDYLD pear"
+    alias phpunit="DYLD_LIBRARY_PATH=$zendDYLD phpunit"
 fi
