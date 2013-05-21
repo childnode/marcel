@@ -15,8 +15,10 @@ function cd
     gitDir=".git"
     gitAutoFetchTimeout=180
     if [ -d "$gitDir" ]; then
-        if [ -f "$gitDir/GITBASH_LAST_AUTOFETCH" -a $gitAutoFetchTimeout -ge $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
-            return $cdExitCode
+        if [ -f "$gitDir/GITBASH_LAST_AUTOFETCH" ]; then
+            if [ $gitAutoFetchTimeout -ge $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
+                return $cdExitCode
+            fi
         fi
         echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
 
