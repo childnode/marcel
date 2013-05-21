@@ -1,2 +1,4 @@
 alias tgz="tar -czvf"
 alias tbz="tar -cjvf"
+alias untgz="tar -zxvf"
+alias untbz="tar -jxvf"
