@@ -61,6 +61,10 @@ function cd
         echo -e $BLUE"00 let the games BEGIN;"$NO_COLOR
         return $cdExitCode
     fi
+    if [ -d .hg ]; then
+        echo -e $RED"=> This is a Mercurial Repository from: "$BLUE$(hg path default)$NO_COLOR
+        hg summary
+    fi
     if [ -d .svn ]; then
         echo -e $RED"=> This is a SVN Repository from: "$BLUE$(svn info | grep ^URL | awk '{print $2}')$NO_COLOR
     fi
