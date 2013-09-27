@@ -32,6 +32,8 @@
     pr = purepu origin HEAD
     cpu = puffpu --commit origin HEAD
     cpru = purepu --commit origin HEAD
+    
+    limbo = fsck --unreachable
 
     ####################################################################################################
     ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
