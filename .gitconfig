@@ -34,18 +34,23 @@
     cpru = purepu --commit origin HEAD
     
     limbo = fsck --unreachable
-
+    
     ####################################################################################################
     ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
     ####################################################################################################
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ll = ls --numstat
+    la = ls --ancestry-path
+    lla = ll --ancestry-path
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
     lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     le = log --oneline --decorate
     llog = log --branches --graph --decorate=full
-    llogr = log --branches --graph --decorate=full --remotes
+    lloga = llog --ancestry-path
+    llogr = llog --remotes
+    llogar = lloga --remotes
+    llogra = llogar
     filelog = log -u
     dl = "!git ll -1"
     dlc = diff --cached HEAD^
