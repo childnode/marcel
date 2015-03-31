@@ -1,4 +1,11 @@
 #!/bin/sh
-for i in $(find  ~/Applications/*-latest/bin -type d); do
+PATH_original=$PATH
+## find  ~/Applications/ -name bin -type d
+for i in $(find  ~/Applications/*-latest/bin -type d 2>/dev/null); do
     export PATH=$PATH:$i
 done
+if [ "$PATH" != "$PATH_original" ]; then
+    echo -e $GREEN"+++ PATH variable enhanced by some applications"$NO_COLOR
+else
+    echo -e $RED"~ PATH variable not enhanced, no applications found in ~/Applications/*-latest"$NO_COLOR
+fi
