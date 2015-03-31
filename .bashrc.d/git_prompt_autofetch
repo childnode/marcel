@@ -15,7 +15,7 @@ git_prompt_autofetch ()
        fi
        if [ "$gitAutoFetchTimeout" -lt $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
            ## fetch changes in background process
-           (git fetch -a 2>&1 1>/dev/null) &
+           (git fetch -a 2>/dev/null 1>/dev/null) &
            echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
        fi
    fi
