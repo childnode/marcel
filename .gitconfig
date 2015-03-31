@@ -2,6 +2,7 @@
     diff = auto
     status = auto
     branch = auto
+
 [alias]
     #st = status
     ci = commit
@@ -15,8 +16,8 @@
     brr = branch -avv
     unstage = reset HEAD --
     untrack = rm --cached
-    ignore = update-index --assume-unchanged
-    unignore = update-index --no-assume-unchanged
+    ignorelocal = update-index --assume-unchanged
+    unignorelocal = update-index --no-assume-unchanged
     wtm = show-merges
     wtmr = show-remote-merges
     gcp = gc --aggressive --prune=0
@@ -39,18 +40,18 @@
     ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
     ####################################################################################################
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    ll = ls --numstat
-    la = ls --ancestry-path
-    lla = ll --ancestry-path
+    ll = !git ls --numstat
+    la = !git ls --ancestry-path
+    lla = !git ll --ancestry-path
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
     lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     le = log --oneline --decorate
     llog = log --branches --graph --decorate=full
-    lloga = llog --ancestry-path
-    llogr = llog --remotes
-    llogar = lloga --remotes
-    llogra = llogar
+    lloga = !git llog --ancestry-path
+    llogr = !git llog --remotes
+    llogar = !git lloga --remotes
+    llogra = !git llogar
     filelog = log -u
     dl = "!git ll -1"
     dlc = diff --cached HEAD^
@@ -76,7 +77,6 @@
     cp = cherry-pick
     st = status -s
     cl = clone
-    #ci = commit
     co = checkout
     #br = branch 
     diff = diff --word-diff
@@ -95,37 +95,57 @@
     ss = stash save
     ####################################################################################################
 [user]
-    name = Marcel Silberhorn
-    email = coder@childno.de
+    name = Marcel Trautwein
+
+[diff]
+  tool = bcomp
+[difftool]
+  prompt = true
+
 [difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
-[mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool "bcomp"]
     trustExitCode = true
+    cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+
+[merge]
+      tool = bcomp
+[mergetool]
+      prompt = true
+[mergetool "bcomp"]
+      trustExitCode = true
+      cmd = "/usr/local/bin/bcomp" "$BASE" "$MERGED"
+[mergetool "bcomp_pro"]
+      trustExitCode = true
+      cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
+	safecrlf = warn
 [branch]
     autosetupmerge = true
 [fetch]
     recurseSubmodules = true
 
-# [difftool "Kaleidoscope"]
-#   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-# [diff]
-#   tool = Kaleidoscope
-# [difftool]
-#   prompt = false
-#
-# [mergetool "Kaleidoscope"]
-#   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-# [mergetool]
-#   prompt = false
-# [merge]
-#   tool = Kaleidoscope
-
 [http]
     sslVerify = false
+	proxy = http://wwwproxy.bahn-net.db.de:8080
+[https]
+    proxy = https://wwwproxy.bahn-net.db.de:8080
+
 [push]
 	default = simple
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+    insteadOf = git@github.com/
+[url "https://gitorious.org"]
+    insteadOf = git://gitorious.org/
