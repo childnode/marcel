@@ -7,7 +7,8 @@ git_prompt ()
        return 0
    fi
 
-
+   export GIT_AUTHOR_NAME=$(git config user.name)
+   export GIT_AUTHOR_EMAIL=$(git config user.email)
    git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
    git_track=$(git branch -lv 2>/dev/null| sed -n '/^\*/s/^\* //p' | awk '{trackStr=$3; sub("^\\[(ahead|behind)", "&", trackStr); if ( match(trackStr, "^\\[") ) { print trackStr" "$4;} }')
 
