@@ -1,2 +1,2 @@
 #!/bin/sh
-PATH=$PATH:/Applications/Android/android-latest/platform-tools
+PATH=$PATH:/Applications/Android\ Studio.app/sdk/platform-tools
