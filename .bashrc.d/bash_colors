@@ -6,7 +6,7 @@ export     WHITE="\033[1;37m"
 export  NO_COLOR="\033[0m"
 
 # activate colors in xterm
-export TERM=xterm-color
+export TERM=xterm-256color # xterm-color
 # activate console colors for OS X / FreeBSD
 export CLICOLOR=true
 
