@@ -7,12 +7,6 @@
 !/.shapps/
 !/.sqldeveloper/
 !/.ssh/
-/.ssh/id_rsa
-/.ssh/id_rsa.ppk
-/.ssh/id_rsa.slave
-/.ssh/id_rsa.slave.ppk
-/.ssh/id_boot2docker*
-/.ssh/known_hosts
 !/.vim/
 !/.vimrc
 !/bin/
