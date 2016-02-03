@@ -1,6 +1,6 @@
 [ui]
-username=Marcel Silberhorn <code2k13@childno.de>
-ignore=/Users/silberhorn/.hgignore_global
+username=Marcel Trautwein <c0d3@childno.de>
+#ignore=~/.hgignore_global
 [merge-tools]
 sourcetreemerge.gui=False
 sourcetreebulkmerge.gui=False
