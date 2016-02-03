@@ -94,6 +94,10 @@
     sa = stash apply
     ss = stash save
     ####################################################################################################
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
 [user]
     name = Marcel Trautwein
 
@@ -128,7 +132,7 @@
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 
 [core]
-	excludesfile = ~/.gitignore_global
+#	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	safecrlf = warn
 [branch]
