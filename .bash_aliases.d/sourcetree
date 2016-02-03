@@ -1,0 +1,4 @@
+## https://jira.atlassian.com/browse/SRCTREE-3172
+alias sourcetree='/Applications/SourceTree.app/Contents/Resources/stree'
+alias stree=sourcetree
+alias st=sourcetree
