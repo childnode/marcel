@@ -79,7 +79,7 @@
     cl = clone
     co = checkout
     #br = branch 
-    diff = diff --word-diff
+    dw = diff --word-diff
     dc = diff --cached
     r = reset
     r1 = reset HEAD^
@@ -94,6 +94,9 @@
     sa = stash apply
     ss = stash save
     ####################################################################################################
+
+	d = diff
+	sm = submodule
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
