@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # adding local binaries
 export PATH=$PATH:~/bin
