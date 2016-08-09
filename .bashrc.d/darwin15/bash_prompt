@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+## re-prepend OS specific prompt extensions
+[[ -n "${PROMPT_COMMAND_OS}" ]] && export PROMPT_COMMAND="${PROMPT_COMMAND_OS}; ${PROMPT_COMMAND}"
