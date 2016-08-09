@@ -167,12 +167,6 @@
 [fetch]
     recurseSubmodules = true
 
-[http]
-    sslVerify = false
-	proxy = http://wwwproxy.bahn-net.db.de:8080
-[https]
-	proxy = https://wwwproxy.bahn-net.db.de:8080
-
 [push]
 	default = simple
 [url "https://github.com/"]
