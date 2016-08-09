@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+function ssh-build-config {
+	[[ ! -f ~/.ssh/config || -n "$1" ]] && echo -e $BLUE"(i) clean rebuild ~/.ssh/config"$NO_COLOR && /usr/bin/env rm -f ~/.ssh/config
+	cat ~/.ssh/config.in $(/usr/bin/env ls ~/.ssh/config.*.in | /usr/bin/env sort -d) > ~/.ssh/config
+	chmod 600 ~/.ssh/config
+}
+
+ssh-build-config
