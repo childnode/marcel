@@ -9,7 +9,9 @@
     co = checkout
     f = fetch --all
 	l = !git lg
+	la = !git lgr
 	ll = !git lgs
+	lla = !git lgsr
     nffmerge = merge --no-ff --no-commit
     ffmerge = merge --ff-only
     filehist = log --branches --graph --decorate=full --remotes --follow
@@ -65,6 +67,7 @@
     
 	lg = log --branches --graph --decorate
     lgs = !git lg --stat
+    lgsr = !git lgs --remotes
     lga = !git lg --ancestry-path
     lgr = !git lg --remotes
     lgar = !git lga --remotes
