@@ -1,0 +1,14 @@
+#!/bin/bash
+## WARN bash if there is a newer version available
+
+# quit if not interactive
+[[ -n "$SSH_TTY" || $- != *i* ]] && return
+
+bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
+newbash=$($(which bash) --norc --noprofile -c "echo \${BASH_VERSION%.*}"); newbmajor=${newbash%.*}; newbminor=${newbash#*.}
+if [ $newbmajor -gt $bmajor ] || [ $bmajor -eq $newbmajor -a $newbminor -gt $bminor ]; then
+    echo "WARNING: there is a new bash version available in path \$bash ${bash} < $(which bash) ${newbash}" >&2;
+fi
+unset bash bmajor bminor;
+unset newbash newbmajor newbminor;
+# Finished adapting your PATH environment variable for use with MacPorts.

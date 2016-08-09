@@ -1,22 +1,28 @@
+#!/usr/bin/env bash
 function mkdir
 {
-    mkdircmd="$(which mkdir)"
-    $mkdircmd "$@"
+    [ -n "${DEBUG}" ] && echo "v.0.2" 1>&2;
+    [ -n "${DEBUG}" ] && echo "childNo.de" 1>&2;
+	
+    /usr/bin/env mkdir "$@"
     mkExitCode=$?
 
-    if [ $mkExitCode != 0 ]; then
-        return $mkExitCode
-    fi
+	# quit if on error or not interactive
+	[[ ${mkExitCode} != 0 || $- != *i* ]] && return ${mkExitCode}
 
     for mkdnewdir in "$@"; do
-        if [ -d "$mkdnewdir" ]; then
+        if [ -d "${mkdnewdir}" ]; then
             read -p "change to new directory '${mkdnewdir}'? [Y/n] ";
             if [ "$REPLY" == "n" -o "$REPLY" == "N" -o "$REPLY" == "NO" -o "$REPLY" == "no" ]; then
                 continue;
             fi
-            cd "$mkdnewdir";
+            cd "${mkdnewdir}";
             return $mkExitCode;
         fi
     done
-    return $mkExitCode;
+	unset mkdnewdir
+	
+    return ${mkExitCode};
+	# TODO: check how to unset
+	unset mkExitCode
 }

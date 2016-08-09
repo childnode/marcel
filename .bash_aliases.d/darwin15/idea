@@ -1,0 +1,2 @@
+alias ideace="open -a 'IntelliJ IDEA CE'"
+alias idea="open -a 'IntelliJ IDEA'"

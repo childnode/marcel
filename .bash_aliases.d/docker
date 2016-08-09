@@ -1,0 +1,4 @@
+# clean http://stackoverflow.com/questions/17236796
+alias docker-cl='docker rm --volumes $(docker ps -q -f status=exited)'
+alias docker-cli='docker rmi $(docker images -q -f dangling=true)'
+alias docker-clv='docker volume rm $(docker volume ls -q)'

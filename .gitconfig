@@ -8,6 +8,8 @@
     ci = commit
     co = checkout
     f = fetch --all
+	l = !git lg
+	ll = !git lgs
     nffmerge = merge --no-ff --no-commit
     ffmerge = merge --ff-only
     filehist = log --branches --graph --decorate=full --remotes --follow
@@ -27,31 +29,46 @@
     pohf = push --force -u origin HEAD
     pohftags = push --force origin refs/tags/*
     nm = branch --no-merge
+	
     puff = pull --ff-only
+    puffs = pull --ff-only --recurse-submodules
     pulls = pull --recurse-submodules
+	pur = pull --rebase
+	purp = pull --rebase=preserve
+	purs = pull --rebase=preserve --recurse-submodules
+	
     p = puffpu origin HEAD
     pr = purepu origin HEAD
     cpu = puffpu --commit origin HEAD
     cpru = purepu --commit origin HEAD
+
+	d = diff
+	dh = diff HEAD --
+	dh1 = diff HEAD~ HEAD --
+	sm = submodule
     
     limbo = fsck --unreachable
     
     ####################################################################################################
     ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
     ####################################################################################################
-    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    ll = !git ls --numstat
-    la = !git ls --ancestry-path
-    lla = !git ll --ancestry-path
-    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
-    lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-    le = log --oneline --decorate
-    llog = log --branches --graph --decorate=full
-    lloga = !git llog --ancestry-path
-    llogr = !git llog --remotes
-    llogar = !git lloga --remotes
-    llogra = !git llogar
+    ls    = log --decorate --oneline 
+    ls2   = log --decorate --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
+    ls3   = log            --pretty=format:"%h\\ %s\\ [%cn]"
+    lsd   = log --decorate --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --date=short
+    lsdr  = log --decorate --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --date=relative
+    lsa   = !git ls --ancestry-path
+    lss   = !git ls --stat
+    lssa  = !git lss --ancestry-path
+    lsns  = !git ls --numstat
+    lsnsa = !git lss --ancestry-path
+    
+	lg = log --branches --graph --decorate
+    lgs = !git lg --stat
+    lga = !git lg --ancestry-path
+    lgr = !git lg --remotes
+    lgar = !git lga --remotes
+    lgra = !git lgar
     filelog = log -u
     dl = "!git ll -1"
     dlc = diff --cached HEAD^
@@ -62,7 +79,7 @@
     grep = grep -Ii
     gr = grep -Ii
     gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
-    la = "!git config -l | grep alias | cut -c 7-"
+    aliases = "!git config -l | grep alias | cut -c 7-"
     #done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
     ## called it 'ignore' in my version
     assume = update-index --assume-unchanged
@@ -94,15 +111,13 @@
     sa = stash apply
     ss = stash save
     ####################################################################################################
-
-	d = diff
-	sm = submodule
+	
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
 [user]
-    name = Marcel Trautwein
+	name = Marcel Trautwein
 
 [diff]
   tool = bcomp
@@ -117,11 +132,14 @@
 [difftool "bcomp"]
     trustExitCode = true
     cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+[difftool "p4merge"]
+  cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge \"$LOCAL\" \"$REMOTE\""
 
 [merge]
-      tool = bcomp
+      tool = p4merge
 [mergetool]
       prompt = true
+	  keepTemporaries = false
 [mergetool "bcomp"]
       trustExitCode = true
       cmd = "/usr/local/bin/bcomp" "$BASE" "$MERGED"
@@ -133,11 +151,14 @@
     trustExitCode = true
 [mergetool "Kaleidoscope"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+[mergetool "p4merge"]
+ cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
 
 [core]
 #	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	safecrlf = warn
+	excludesfile = ~/.gitignore_global
 [branch]
     autosetupmerge = true
 [fetch]
@@ -147,7 +168,7 @@
     sslVerify = false
 	proxy = http://wwwproxy.bahn-net.db.de:8080
 [https]
-    proxy = https://wwwproxy.bahn-net.db.de:8080
+	proxy = https://wwwproxy.bahn-net.db.de:8080
 
 [push]
 	default = simple

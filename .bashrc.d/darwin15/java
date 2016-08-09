@@ -1,0 +1,9 @@
+#!/bin/bash
+[ -n "${JDK_HOME}" -a -z "${JAVA_HOME}" ] && export JAVA_HOME=${JDK_HOME}/jre
+[[ -z "${JAVA_HOME}" ]] && export JAVA_HOME=$(/usr/libexec/java_home -F)
+
+# quit if not interactive
+[[ $- != *i* ]] && return
+
+echo -e ${BLUE:-}"(i) using env "$(java -version -1  2>&1 | grep "^java version")${NO_COLOR:-}
+echo -e ${BLUE:-}"(i) using JAVA_HOME for "$([ -f ${JAVA_HOME}/bin/java ] && ${JAVA_HOME}/bin/java -version 2>&1  | grep "^java version" || echo "UNKNOWN")${NO_COLOR:-}

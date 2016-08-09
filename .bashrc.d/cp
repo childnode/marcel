@@ -1,6 +1,7 @@
 function cp
 {
     [ -n "$DEBUG" ] && echo "v.0.2" 1>&2;
+    [ -n "$DEBUG" ] && echo "childNo.de" 1>&2;
     [ -n "$DEBUG" ] && echo "inspired by @marcdix (twitter) / @mdix (bitbucket)" 1>&2;
     evalcmd="$(which cp)"
     $evalcmd "$@"
@@ -9,6 +10,12 @@ function cp
     if [ $evalExitCode != 0 ]; then
         return $evalExitCode
     fi
+
+    # quit if not interactive
+    [[ $- != *i* ]] && return $evalExitCode
+
+    # Workaround: quit if its the copy command from shell_session_save_history (in /etc/bashrc_Apple_Terminal)
+    [ -f "/etc/bashrc_Apple_Terminal" -a "$1" == "$SHELL_SESSION_HISTFILE_SHARED" -a "$2" == "$SHELL_SESSION_HISTFILE" ] && return $evalExitCode
 
     targetDir=${!#}
     if [ -f "${!#}" ]; then
