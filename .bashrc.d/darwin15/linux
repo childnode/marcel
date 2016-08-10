@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+function linux() {
+	case "$1" in
+		"route")
+			echo -e ${BLUE}"hint: it's called netstat"${NO_COLOR}
+			shift
+			/usr/bin/env netstat -r $@
+		;;
+		*)
+			echo "unknown command $1 in ${FUNCNAME} (${BASH_SOURCE})" 1>&2
+		;;
+	esac
+}
