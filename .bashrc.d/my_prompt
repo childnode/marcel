@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 my_prompt() {
-    last_return_code=$?;
-    last_return_code_out="("$last_return_code")"
-    if [ $last_return_code -ne 0 ]; then
-        last_return_code_out="\033[0;31m("$last_return_code")";
-    fi
-    ## output return code
-    echo -ne "\033[1;37m$0:[return code: $last_return_code_out\033[1;37m]\n\n"$NO_COLOR
-	
+	## TODO: last return code is always set to 0 ... WHY?! it seems to, $? is updated AFTER prompt run
+    # last_return_code=$?;
+    # last_return_code_out="("$last_return_code")"
+	# last_return_code_out_sign='✓'
+    # if [ ${last_return_code} -ne 0 ]; then
+    #     last_return_code_out="\033[0;31m("$last_return_code")";
+	# 	last_return_code_out_sign='✗'
+    # fi
+    # ## output return code
+    # echo -ne "\033[1;37m${0}:[return code: ${last_return_code_out}\033[1;37m]"
+	# [[ "$LANG" =~ "UTF" ]] && echo -ne " "${last_return_code_out_sign}
+	echo -ne "\033[0m\n\n"
+		
     [[ -f ~/.bashrc.d/git_prompt_autofetch ]] && (git_prompt_autofetch &)
     [[ -f ~/.bashrc.d/git_prompt ]] && \
-	echo -ne "\033[1;37m$0:${NO_COLOR}$(git_prompt)\033[1;34m${PWD}\033[0m\n" || \
-    echo -ne "\033[1;37m$0:${NO_COLOR}\033[1;34m${PWD}\033[0m\n"
+	echo -ne "\033[1;37m${0}:\033[0m$(git_prompt)\033[1;34m${PWD}\033[0m\n" || \
+    echo -ne "\033[1;37m${0}:\033[1;34m${PWD}\033[0m\n"
+	 
 }
