@@ -1,1 +1,4 @@
+#!/usr/bin/env bash
+
 [[ -s "$(brew --prefix dvm)/dvm.sh" ]] && source "$(brew --prefix dvm)/dvm.sh"
+[[ -f $(dirname ${BASH_SOURCE})/bash_completion && -s "$(brew --prefix dvm)/bash_completion" ]] && source "$(brew --prefix dvm)/bash_completion"
