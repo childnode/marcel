@@ -1,6 +1,6 @@
 [submodule ".shapps/willgit"]
 	path = .shapps/willgit
-	url = https://gitorious.org/willgit/mainline.git
+	url = https://github.com/childnode/willgit.git
 [submodule ".vim"]
 	path = .vim
 	url = https://github.com/childnode/.vim.git
