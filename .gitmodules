@@ -4,3 +4,21 @@
 [submodule ".vim"]
 	path = .vim
 	url = https://github.com/childnode/.vim.git
+[submodule "gists/github/childnode/295dbd6e_hasSize.regex"]
+	path = gists/github/childnode/295dbd6e_hasSize.regex
+	url = https://gist.github.com/295dbd6e1ce3f90abe4b15cb10366650.git
+[submodule "gists/github/childnode/66d4b982_git.rebaseAllBranches"]
+	path = gists/github/childnode/66d4b982_git.rebaseAllBranches
+	url = https://gist.github.com/66d4b982332824bb8750703aaa1ab0d6.git
+[submodule "gists/github/childnode/88304258_git_deleteAllRemoteBranches.sh"]
+	path = gists/github/childnode/88304258_git_deleteAllRemoteBranches.sh
+	url = https://gist.github.com/883042581fe2b31f208e48dfd4481288.git
+[submodule "gists/github/childnode/81ae6468_build_jar_manifest.gradle"]
+	path = gists/github/childnode/81ae6468_build_jar_manifest.gradle
+	url = https://gist.github.com/81ae646845e1d6e2d9c78d94688de4e6.git
+[submodule "gists/github/childnode/6df6d14c_ideaGradleProjectSetupForAdditionalSourceSets"]
+	path = gists/github/childnode/6df6d14c_ideaGradleProjectSetupForAdditionalSourceSets
+	url = https://gist.github.com/6df6d14c6b3aa47a327bb73ffd731444.git
+[submodule "gists/github/childnode/8f100f90_dockerSaveAllImages.sh"]
+	path = gists/github/childnode/8f100f90_dockerSaveAllImages.sh
+	url = https://gist.github.com/8f100f90b116271761a21979d4905887.git
