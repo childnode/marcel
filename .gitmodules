@@ -22,3 +22,9 @@
 [submodule "gists/github/childnode/8f100f90_dockerSaveAllImages.sh"]
 	path = gists/github/childnode/8f100f90_dockerSaveAllImages.sh
 	url = https://gist.github.com/8f100f90b116271761a21979d4905887.git
+[submodule "gists/bitbucket/childnode/2015-06-16_G4pLy_prevent-empty-version-comment-in.git"]
+	path = gists/bitbucket/childnode/2015-06-16_G4pLy_prevent-empty-version-comment-in.git
+	url = https://bitbucket.org/snippets/childnode/G4pLy/prevent-empty-version-comment-in.git
+[submodule "gists/bitbucket/childnode/2015-06-21_kyAAM_plasticscm-addcurrentworkdir-batch-task"]
+	path = gists/bitbucket/childnode/2015-06-21_kyAAM_plasticscm-addcurrentworkdir-batch-task
+	url = https://bitbucket.org/snippets/childnode/kyAAM/plasticscm-addcurrentworkdir-batch-task.git
