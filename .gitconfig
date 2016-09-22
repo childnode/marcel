@@ -8,10 +8,10 @@
     ci = commit
     co = checkout
     f = fetch --all
-	l = !git lg
-	la = !git lgr
-	ll = !git lgs
-	lla = !git lgsr
+    l = !git lg
+    la = !git lgr
+    ll = !git lgs
+    lla = !git lgsr
     nffmerge = merge --no-ff --no-commit
     ffmerge = merge --ff-only
     filehist = log --branches --graph --decorate=full --remotes --follow
@@ -31,23 +31,23 @@
     pohf = push --force -u origin HEAD
     pohftags = push --force origin refs/tags/*
     nm = branch --no-merge
-	
+    
     puff = pull --ff-only
     puffs = pull --ff-only --recurse-submodules
     pulls = pull --recurse-submodules
-	pur = pull --rebase
-	purp = pull --rebase=preserve
-	purs = pull --rebase=preserve --recurse-submodules
-	
+    pur = pull --rebase
+    purp = pull --rebase=preserve
+    purs = pull --rebase=preserve --recurse-submodules
+    
     p = puffpu origin HEAD
     pr = purepu origin HEAD
     cpu = puffpu --commit origin HEAD
     cpru = purepu --commit origin HEAD
 
-	d = diff
-	dh = diff HEAD --
-	dh1 = diff HEAD~ HEAD --
-	sm = submodule
+    d = diff
+    dh = diff HEAD --
+    dh1 = diff HEAD~ HEAD --
+    sm = submodule
     
     limbo = fsck --unreachable
     
@@ -65,7 +65,7 @@
     lsns  = !git ls --numstat
     lsnsa = !git lss --ancestry-path
     
-	lg = log --branches --graph --decorate
+    lg = log --branches --graph --decorate
     lgs = !git lg --stat
     lgsr = !git lgs --remotes
     lga = !git lg --ancestry-path
@@ -114,13 +114,13 @@
     sa = stash apply
     ss = stash save
     ####################################################################################################
-	
+    
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [user]
-	name = Marcel Trautwein
+    name = Marcel Trautwein
 
 [diff]
   tool = bcomp
@@ -128,8 +128,8 @@
   prompt = true
 
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
 [difftool "Kaleidoscope"]
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool "bcomp"]
@@ -142,7 +142,7 @@
       tool = p4merge
 [mergetool]
       prompt = true
-	  keepTemporaries = false
+      keepTemporaries = false
 [mergetool "bcomp"]
       trustExitCode = true
       cmd = "/usr/local/bin/bcomp" "$BASE" "$MERGED"
@@ -150,17 +150,17 @@
       trustExitCode = true
       cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
 [mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 [mergetool "p4merge"]
  cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
 
 [core]
-#	excludesfile = ~/.gitignore_global
-	autocrlf = input
-	safecrlf = warn
+#    excludesfile = ~/.gitignore_global
+    autocrlf = input
+    safecrlf = warn
 	excludesfile = ~/.gitignore_global
 [branch]
     autosetupmerge = true
