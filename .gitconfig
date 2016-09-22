@@ -196,5 +196,7 @@
 [url "https://gitorious.org"]
     insteadOf = git://gitorious.org/
     insteadOf = git://gitorious.org:
-[url "git://gitorious.org/"]
+[url "git://gitorious.org"]
     pushInsteadOf = https://gitorious.org
+[url "git@bitbucket.org:"]
+    insteadOf = https://bitbucket.org
