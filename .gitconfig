@@ -155,7 +155,8 @@
 [mergetool "Kaleidoscope"]
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 [mergetool "p4merge"]
- cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
+    # cmd = "(if [ \"$OSTYPE\" == \"darwin\" ]; then echo /Applications/p4merge.app/Contents/Resources/launchp4merge; else echo p4merge; fi) \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
+    cmd = "p4merge \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
 
 [core]
 #    excludesfile = ~/.gitignore_global
