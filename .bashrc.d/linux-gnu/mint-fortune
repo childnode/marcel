@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+if [ -x /usr/bin/mint-fortune ]; then
+    source /usr/bin/mint-fortune
+fi
