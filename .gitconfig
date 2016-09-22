@@ -50,6 +50,8 @@
     sm = submodule
     
     limbo = fsck --unreachable
+
+    up = !gitup .
     
     ####################################################################################################
     ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
@@ -98,7 +100,7 @@
     st = status -s
     cl = clone
     co = checkout
-    #br = branch 
+    # br = branch 
     dw = diff --word-diff
     dc = diff --cached
     r = reset
@@ -120,6 +122,7 @@
     smudge = git-lfs smudge %f
     required = true
 [user]
+    useConfigOnly = true
     name = Marcel Trautwein
 
 [diff]
@@ -169,13 +172,19 @@
     recurseSubmodules = true
 [status]
     submoduleSummary = true
+    branch = true
 
 [tag]
     forceSignAnnotated = true
     sort = "-version:refname"
 
+[versionsort]
+    prereleaseSuffix = "-rc"
+
 [push]
     default = simple
+    followTags = true
+
 [url "https://github.com/"]
     insteadOf = git://github.com/
     insteadOf = git://github.com:
