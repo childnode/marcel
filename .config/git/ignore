@@ -1,3 +1,4 @@
+# ignore Mac files
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -30,7 +31,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# temporary files
+# typical temporary files
 *~
 *.swp
 

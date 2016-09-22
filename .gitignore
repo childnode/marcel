@@ -1,4 +1,10 @@
 /*
+
+# typical local config files
+yankring_history_*.txt
+gradle-app.setting
+
+# includes
 !/.bash_aliases.d/
 !/.bash_aliases
 !/.bashrc.d/
