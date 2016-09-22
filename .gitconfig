@@ -167,6 +167,8 @@
     autosetupmerge = true
 [fetch]
     recurseSubmodules = true
+[status]
+    submoduleSummary = true
 
 [push]
     default = simple
