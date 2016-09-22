@@ -169,15 +169,17 @@
     recurseSubmodules = true
 
 [push]
-	default = simple
-	
-# [url "https://github.com/"]
-# 	insteadOf = git://github.com/
-#     insteadOf = git@github.com:
-# [url "https://gitorious.org"]
-#     insteadOf = git://gitorious.org/
+    default = simple
+[url "https://github.com/"]
+    insteadOf = git://github.com/
+    insteadOf = git://github.com:
+    insteadOf = git@github.com:
 [url "git@github.com:"]
-	insteadOf = https://github.com/
-	insteadOf = http://github.com/
+    pushInsteadOf = git://github.com/
+    pushInsteadOf = git://github.com:
+    pushInsteadOf = https://github.com/
+[url "https://gitorious.org"]
+    insteadOf = git://gitorious.org/
+    insteadOf = git://gitorious.org:
 [url "git://gitorious.org/"]
-    insteadOf = https://gitorious.org
+    pushInsteadOf = https://gitorious.org
