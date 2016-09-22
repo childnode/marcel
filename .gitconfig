@@ -170,6 +170,10 @@
 [status]
     submoduleSummary = true
 
+[tag]
+    forceSignAnnotated = true
+    sort = "-version:refname"
+
 [push]
     default = simple
 [url "https://github.com/"]
