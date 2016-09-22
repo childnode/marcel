@@ -26,5 +26,4 @@ gradle-app.setting
 !/.hgrc
 !/.hgignore_global
 !/.xchat2
-!/.gradle/
 !/gists/
