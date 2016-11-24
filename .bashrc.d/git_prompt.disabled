@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
 # current branch in prompt:
 git_prompt ()
 {
    gitDir=$(git rev-parse --git-dir 2>/dev/null)
    
    if [ -z "$gitDir" ] ; then
+       unset gitDir
        return 0
    fi
 
@@ -19,5 +21,7 @@ git_prompt ()
    fi
 
    echo "[$git_color$git_branch$git_track${c_reset}]"
+
+   unset gitDir
    return 0;
 }

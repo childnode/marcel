@@ -4,3 +4,5 @@ for aliasTermOrOSType in '' $TERM $TERM_PROGRAM $HOSTTYPE $MACHTYPE $OSTYPE; do
 		[[ -f ${aliasFile} && "$(basename ${aliasFile})" == "$(basename ${aliasFile} .disabled)" ]] && source ${aliasFile}
 	done
 done
+
+unset aliasTermOrOSType aliasFile

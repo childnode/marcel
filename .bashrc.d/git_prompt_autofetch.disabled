@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # current branch in prompt:
 git_prompt_autofetch ()
 {
@@ -19,4 +20,6 @@ git_prompt_autofetch ()
            echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
        fi
    fi
+
+   unset gitDir gitAutoFetchTimeout
 }

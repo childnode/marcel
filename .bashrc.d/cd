@@ -3,27 +3,21 @@ function cd
     [ -n "$DEBUG" ] && echo "v.0.3" 1>&2;
     [ -n "$DEBUG" ] && echo "childNo.de" 1>&2;
 
-    cdcmd="builtin cd"
-
     if [ "$(echo $@)" != "-" ]; then
         pushd . > /dev/null
     fi
-    $cdcmd "$@"
+    builtin cd "$@"
     cdExitCode=$?
 
-    if [ $cdExitCode != 0 ]; then
-        return $cdExitCode
-    fi
-	
-	# quit if not interactive
-	[[ $- != *i* ]] && return $cdExitCode
+    # quit on error or if not interactive
+    [ ${cdExitCode} -gt 0 -o $- != *i* ] && return $cdExitCode
 
     gitDir=".git"
     gitAutoFetchTimeout=180
     if [ -d "$gitDir" ]; then
         if [ -f "$gitDir/GITBASH_LAST_AUTOFETCH" ]; then
             if [ $gitAutoFetchTimeout -ge $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
-                return $cdExitCode
+                return ${cdExitCode}
             fi
         fi
         echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
