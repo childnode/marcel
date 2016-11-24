@@ -4,7 +4,7 @@
     branch = auto
 
 [alias]
-    #st = status
+    #st = status ##see st below == status -s
     ci = commit
     co = checkout
     f = fetch --all
@@ -126,50 +126,55 @@
     name = Marcel Trautwein
 
 [diff]
-  tool = bcomp
+    tool = bcomp
 [difftool]
-  prompt = true
+    prompt = true
+
+[merge]
+    tool = p4merge
+[mergetool]
+    prompt = true
+    keepTemporaries = false
 
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path = 
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool "bcomp"]
-    trustExitCode = true
-    cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
-[difftool "p4merge"]
-  cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge \"$LOCAL\" \"$REMOTE\""
-
-[merge]
-      tool = p4merge
-[mergetool]
-      prompt = true
-      keepTemporaries = false
-[mergetool "bcomp"]
-      trustExitCode = true
-      cmd = "/usr/local/bin/bcomp" "$BASE" "$MERGED"
-[mergetool "bcomp_pro"]
-      trustExitCode = true
-      cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 [mergetool "sourcetree"]
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
+
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+
+[difftool "bcomp"]
+    trustExitCode = true
+    cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+[mergetool "bcomp"]
+    trustExitCode = true
+    cmd = "/usr/local/bin/bcomp" "$BASE" "$MERGED"
+[mergetool "bcomp_pro"]
+    trustExitCode = true
+    cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+
+[difftool "p4merge"]
+    cmd = "p4merge \"$LOCAL\" \"$REMOTE\""
 [mergetool "p4merge"]
-    # cmd = "(if [ \"$OSTYPE\" == \"darwin\" ]; then echo /Applications/p4merge.app/Contents/Resources/launchp4merge; else echo p4merge; fi) \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
     cmd = "p4merge \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
 
+
 [core]
-#    excludesfile = ~/.gitignore_global
     autocrlf = input
     safecrlf = warn
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
+
 [branch]
     autosetupmerge = true
+
 [fetch]
     recurseSubmodules = true
+
 [status]
     submoduleSummary = true
     branch = true
@@ -193,10 +198,12 @@
     pushInsteadOf = git://github.com/
     pushInsteadOf = git://github.com:
     pushInsteadOf = https://github.com/
+
 [url "https://gitorious.org"]
     insteadOf = git://gitorious.org/
     insteadOf = git://gitorious.org:
 [url "git://gitorious.org"]
     pushInsteadOf = https://gitorious.org
+
 [url "git@bitbucket.org:"]
     insteadOf = https://bitbucket.org
