@@ -3,14 +3,13 @@ function cd
     [ -n "$DEBUG" ] && echo "v.0.3" 1>&2;
     [ -n "$DEBUG" ] && echo "childNo.de" 1>&2;
 
-    if [ "$(echo $@)" != "-" ]; then
-        pushd . > /dev/null
-    fi
+    [ "$(echo $@)" != "-" ] && pushd . > /dev/null
+
     builtin cd "$@"
     cdExitCode=$?
 
     # quit on error or if not interactive
-    [ ${cdExitCode} -gt 0 -o $- != *i* ] && return $cdExitCode
+    [ "${cdExitCode}" -gt 0 -o "$-" != "*i*" ] && return $cdExitCode
 
     gitDir=".git"
     gitAutoFetchTimeout=180
