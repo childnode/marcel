@@ -168,6 +168,10 @@
     autocrlf = input
     safecrlf = warn
     excludesfile = ~/.gitignore_global
+    whitespace = indent-with-non-tab,tabwidth=4
+
+[apply]
+    whitespace = fix
 
 [branch]
     autosetupmerge = true
