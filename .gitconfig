@@ -1,213 +1,215 @@
 [color]
-    diff = auto
-    status = auto
-    branch = auto
+	diff = auto
+	status = auto
+	branch = auto
+	grep = auto
 
 [alias]
-    #st = status ##see st below == status -s
-    ci = commit
-    co = checkout
-    f = fetch --all
-    l = !git lg
-    la = !git lgr
-    ll = !git lgs
-    lla = !git lgsr
-    nffmerge = merge --no-ff --no-commit
-    ffmerge = merge --ff-only
-    filehist = log --branches --graph --decorate=full --remotes --follow
-    tags = tag -ln
-    br = branch -vv
-    brr = branch -avv
-    unstage = reset HEAD --
-    untrack = rm --cached
-    ignorelocal = update-index --assume-unchanged
-    unignorelocal = update-index --no-assume-unchanged
-    wtm = show-merges
-    wtmr = show-remote-merges
-    gcp = gc --aggressive --prune=0
-    track = branch --set-upstream
-    poh = push -u origin HEAD
-    pohtags = push origin refs/tags/*
-    pohf = push --force -u origin HEAD
-    pohftags = push --force origin refs/tags/*
-    nm = branch --no-merge
-    
-    puff = pull --ff-only
-    puffs = pull --ff-only --recurse-submodules
-    pulls = pull --recurse-submodules
-    pur = pull --rebase
-    purp = pull --rebase=preserve
-    purs = pull --rebase=preserve --recurse-submodules
-    
-    p = puffpu origin HEAD
-    pr = purepu origin HEAD
-    cpu = puffpu --commit origin HEAD
-    cpru = purepu --commit origin HEAD
+	#st = status ##see st below == status -s
+	ci = commit
+	co = checkout
+	f = fetch --all
+	l = !git lg
+	la = !git lgr
+	ll = !git lgs
+	lla = !git lgsr
+	nffmerge = merge --no-ff --no-commit
+	ffmerge = merge --ff-only
+	filehist = log --branches --graph --decorate=full --remotes --follow
+	tags = tag -ln
+	br = branch -vv
+	brr = branch -avv
+	unstage = reset HEAD --
+	untrack = rm --cached
+	ignorelocal = update-index --assume-unchanged
+	unignorelocal = update-index --no-assume-unchanged
+	wtm = show-merges
+	wtmr = show-remote-merges
+	gcp = gc --aggressive --prune=0
+	track = branch --set-upstream
+	poh = push -u origin HEAD
+	pohtags = push origin refs/tags/*
+	pohf = push --force -u origin HEAD
+	pohftags = push --force origin refs/tags/*
+	nm = branch --no-merge
+	
+	puff = pull --ff-only
+	puffs = pull --ff-only --recurse-submodules
+	pulls = pull --recurse-submodules
+	pur = pull --rebase
+	purp = pull --rebase=preserve
+	purs = pull --rebase=preserve --recurse-submodules
+	
+	p = puffpu origin HEAD
+	pr = purepu origin HEAD
+	cpu = puffpu --commit origin HEAD
+	cpru = purepu --commit origin HEAD
 
-    d = diff
-    dh = diff HEAD --
-    dh1 = diff HEAD~ HEAD --
-    sm = submodule
-    
-    limbo = fsck --unreachable
+	d = diff
+	dh = diff HEAD --
+	dh1 = diff HEAD~ HEAD --
+	sm = submodule
+	
+	limbo = fsck --unreachable
 
-    up = !gitup .
-    
-    ####################################################################################################
-    ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
-    ####################################################################################################
-    ls    = log --decorate --oneline 
-    ls2   = log --decorate --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
-    ls3   = log            --pretty=format:"%h\\ %s\\ [%cn]"
-    lsd   = log --decorate --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --date=short
-    lsdr  = log --decorate --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --date=relative
-    lsa   = !git ls --ancestry-path
-    lss   = !git ls --stat
-    lssa  = !git lss --ancestry-path
-    lsns  = !git ls --numstat
-    lsnsa = !git lss --ancestry-path
-    
-    lg = log --branches --graph --decorate
-    lgs = !git lg --stat
-    lgsr = !git lgs --remotes
-    lga = !git lg --ancestry-path
-    lgr = !git lg --remotes
-    lgar = !git lga --remotes
-    lgra = !git lgar
-    filelog = log -u
-    dl = "!git ll -1"
-    dlc = diff --cached HEAD^
-    dr  = "!f() { git diff "$1"^.."$1"; }; f"
-    lc  = "!f() { git ll "$1"^.."$1"; }; f"
-    diffr  = "!f() { git diff "$1"^.."$1"; }; f"
-    f = "!git ls-files | grep -i"
-    grep = grep -Ii
-    gr = grep -Ii
-    gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
-    aliases = "!git config -l | grep alias | cut -c 7-"
-    #done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
-    ## called it 'ignore' in my version
-    assume = update-index --assume-unchanged
-    unassume = update-index --no-assume-unchanged
-    assumed = "!git ls-files -v | grep ^h | cut -c 3-"
-    unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
-    assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
-    lasttag = describe --tags --abbrev=0
-    lt = describe --tags --abbrev=0
-    ours = "!f() { git co --ours $@ && git add $@; }; f"
-    theirs = "!f() { git co --theirs $@ && git add $@; }; f"
-    cp = cherry-pick
-    st = status -s
-    cl = clone
-    co = checkout
-    # br = branch 
-    dw = diff --word-diff
-    dc = diff --cached
-    r = reset
-    r1 = reset HEAD^
-    r2 = reset HEAD^^
-    rh = reset --hard
-    rh1 = reset HEAD^ --hard
-    rh2 = reset HEAD^^ --hard
-    svnr = svn rebase
-    svnd = svn dcommit
-    svnl = svn log --oneline --show-commit
-    sl = stash list
-    sa = stash apply
-    ss = stash save
-    ####################################################################################################
-    
+	up = !gitup .
+	
+	####################################################################################################
+	## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+	####################################################################################################
+	ls    = log --decorate --oneline 
+	ls2   = log --decorate --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
+	ls3   = log            --pretty=format:"%h\\ %s\\ [%cn]"
+	lsd   = log --decorate --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --date=short
+	lsdr  = log --decorate --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --date=relative
+	lsa   = !git ls --ancestry-path
+	lss   = !git ls --stat
+	lssa  = !git lss --ancestry-path
+	lsns  = !git ls --numstat
+	lsnsa = !git lss --ancestry-path
+	
+	lg = log --branches --graph --decorate
+	lgs = !git lg --stat
+	lgsr = !git lgs --remotes
+	lga = !git lg --ancestry-path
+	lgr = !git lg --remotes
+	lgar = !git lga --remotes
+	lgra = !git lgar
+	filelog = log -u
+	dl = "!git ll -1"
+	dlc = diff --cached HEAD^
+	dr  = "!f() { git diff "$1"^.."$1"; }; f"
+	lc  = "!f() { git ll "$1"^.."$1"; }; f"
+	diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+	f = "!git ls-files | grep -i"
+	grepi = grep -Ii
+	gr = grep
+	gri = "!git grepi"
+	gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+	aliases = "!git config -l | grep alias | cut -c 7-"
+	#done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+	## called it 'ignore' in my version
+	assume = update-index --assume-unchanged
+	unassume = update-index --no-assume-unchanged
+	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+	unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+	assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+	lasttag = describe --tags --abbrev=0
+	lt = describe --tags --abbrev=0
+	ours = "!f() { git co --ours $@ && git add $@; }; f"
+	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+	cp = cherry-pick
+	st = status -s
+	cl = clone
+	co = checkout
+	# br = branch 
+	dw = diff --word-diff
+	dc = diff --cached
+	r = reset
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+	svnr = svn rebase
+	svnd = svn dcommit
+	svnl = svn log --oneline --show-commit
+	sl = stash list
+	sa = stash apply
+	ss = stash save
+	####################################################################################################
+	
 [filter "lfs"]
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
-    required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
 [user]
-    useConfigOnly = true
-    name = Marcel Trautwein
+	useConfigOnly = true
+	name = Marcel Trautwein
 
 [diff]
-    tool = bcomp
+	tool = bcomp
 [difftool]
-    prompt = true
+	prompt = true
 
 [merge]
-    tool = p4merge
+	tool = p4merge
 [mergetool]
-    prompt = true
-    keepTemporaries = false
+	prompt = true
+	keepTemporaries = false
 
 [difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
 [difftool "Kaleidoscope"]
-    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
-    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 
 [difftool "bcomp"]
-    trustExitCode = true
-    cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+	trustExitCode = true
+	cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
 [mergetool "bcomp"]
-    trustExitCode = true
-    cmd = "/usr/local/bin/bcomp" "$BASE" "$MERGED"
+	trustExitCode = true
+	cmd = "/usr/local/bin/bcomp" "$BASE" "$MERGED"
 [mergetool "bcomp_pro"]
-    trustExitCode = true
-    cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+	trustExitCode = true
+	cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 
 [difftool "p4merge"]
-    cmd = "p4merge \"$LOCAL\" \"$REMOTE\""
+	cmd = "p4merge \"$LOCAL\" \"$REMOTE\""
 [mergetool "p4merge"]
-    cmd = "p4merge \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
+	cmd = "p4merge \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\""
 
 
 [core]
-    autocrlf = input
-    safecrlf = warn
-    excludesfile = ~/.gitignore_global
-    whitespace = indent-with-non-tab,tabwidth=4
+	autocrlf = input
+	safecrlf = warn
+	excludesfile = ~/.gitignore_global
+	whitespace = indent-with-non-tab,tabwidth=4
 
 [apply]
-    whitespace = fix
+	whitespace = fix
 
 [branch]
-    autosetupmerge = true
+	autosetupmerge = true
 
 [fetch]
-    recurseSubmodules = true
+	recurseSubmodules = true
 
 [status]
-    submoduleSummary = true
-    branch = true
+	submoduleSummary = true
+	branch = true
 
 [tag]
-    forceSignAnnotated = true
-    sort = "-version:refname"
+	forceSignAnnotated = true
+	sort = "-version:refname"
 
 [versionsort]
-    prereleaseSuffix = "-rc"
+	prereleaseSuffix = "-rc"
 
 [push]
-    default = simple
-    followTags = true
+	default = simple
+	followTags = true
 
 [url "https://github.com/"]
-    insteadOf = git://github.com/
-    insteadOf = git://github.com:
-    insteadOf = git@github.com:
+	insteadOf = git://github.com/
+	insteadOf = git://github.com:
+	insteadOf = git@github.com:
 [url "git@github.com:"]
-    pushInsteadOf = git://github.com/
-    pushInsteadOf = git://github.com:
-    pushInsteadOf = https://github.com/
+	pushInsteadOf = git://github.com/
+	pushInsteadOf = git://github.com:
+	pushInsteadOf = https://github.com/
 
 [url "https://gitorious.org"]
-    insteadOf = git://gitorious.org/
-    insteadOf = git://gitorious.org:
+	insteadOf = git://gitorious.org/
+	insteadOf = git://gitorious.org:
 [url "git://gitorious.org"]
-    pushInsteadOf = https://gitorious.org
+	pushInsteadOf = https://gitorious.org
 
 [url "git@bitbucket.org:"]
-    insteadOf = https://bitbucket.org
+	insteadOf = https://bitbucket.org
