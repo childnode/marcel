@@ -6,13 +6,13 @@ function cd
     [ "$(echo $@)" != "-" ] && pushd . > /dev/null
 
     builtin cd "$@"
-    cdExitCode=$?
+    local cdExitCode=$?
 
     # quit on error or if not interactive
     [ "${cdExitCode}" -gt 0 -o "$-" != "*i*" ] && return $cdExitCode
 
-    gitDir=".git"
-    gitAutoFetchTimeout=180
+    local gitDir=".git"
+    local gitAutoFetchTimeout=180
     if [ -d "$gitDir" ]; then
         if [ -f "$gitDir/GITBASH_LAST_AUTOFETCH" ]; then
             if [ $gitAutoFetchTimeout -ge $(bc <<< "$(date +%s)-$(cat $gitDir/GITBASH_LAST_AUTOFETCH)") ]; then
@@ -21,13 +21,13 @@ function cd
         fi
         echo $(date +%s) > $gitDir/GITBASH_LAST_AUTOFETCH
 
-        isColoredBranch=$(git config --get color.branch)
+        local isColoredBranch=$(git config --get color.branch)
         echo -e $RED"=> This is a GIT Repository"
         if [ "$isColoredBranch" == "auto" ]; then
             echo -ne $NO_COLOR;
         fi
         echo -e $BLUE" == UPDATING == "$NO_COLOR
-        gitFetchOk=false
+        local gitFetchOk=false
         git fetch --all -p -t && gitFetchOk=true
         if [ $? -ne 0 ]; then
             gitFetchOk=false
@@ -37,11 +37,11 @@ function cd
         git br
         echo -ne $NO_COLOR
         echo -e $BLUE" == SOURCES  == "$NO_COLOR
-        remote=$(git config --get remote.origin.url)
+        local remote=$(git config --get remote.origin.url)
         if [ -n "$remote" ]; then
             echo -e $RED"cloned from GIT: "$BLUE$remote$NO_COLOR
         fi
-        remote=$(git config --get svn-remote.svn.url)
+        local remote=$(git config --get svn-remote.svn.url)
         if [ -n "$remote" ]; then
             echo -e $RED"cloned from SVN: "$BLUE$remote$NO_COLOR
         fi
