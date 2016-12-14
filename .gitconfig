@@ -128,7 +128,7 @@
 	name = Marcel Trautwein
 
 [diff]
-	tool = bcomp
+	tool = p4merge
 [difftool]
 	prompt = true
 
@@ -137,6 +137,7 @@
 [mergetool]
 	prompt = true
 	keepTemporaries = false
+	keepBackup = false
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
