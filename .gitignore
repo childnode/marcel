@@ -4,6 +4,9 @@
 yankring_history_*.txt
 gradle-app.setting
 
+# bash
+/.bash_history
+
 # includes
 !/.bash_aliases.d/
 !/.bash_aliases
