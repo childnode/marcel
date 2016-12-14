@@ -130,7 +130,7 @@
 [diff]
 	tool = p4merge
 [difftool]
-	prompt = true
+	prompt = false
 
 [merge]
 	tool = p4merge
