@@ -1,0 +1,5 @@
+if [ -z "$EDITOR" ]; then
+    echo -e $BLUE"(!)"$GREEN" no preferred EDITOR set !"$NO_COLOR
+else
+    echo -e $GREEN"+++ preferred EDITOR is \`$EDITOR\`"$NO_COLOR
+fi

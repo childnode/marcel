@@ -11,9 +11,3 @@ if [ -f "$bc_cmd" ]; then
 else
     echo -e $RED"--- bash_completion missing"$NO_COLOR
 fi
-
-if [ -z "$EDITOR" ]; then
-    echo -e $BLUE"(!)"$GREEN" no preferred EDITOR set !"$NO_COLOR
-else
-    echo -e $GREEN"+++ preferred EDITOR is \`$EDITOR\`"$NO_COLOR
-fi
