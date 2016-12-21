@@ -6,9 +6,14 @@ function linux() {
 			echo -e ${BLUE}"hint: it's called netstat"${NO_COLOR}
 			shift
 			/usr/bin/env netstat -r $@
-		;;
+			;;
+		"xsel")
+			echo -e ${BLUE}"hint: it's called pbpaste"${NO_COLOR}
+			shift
+			/usr/bin/env pbpaste
+			;;
 		*)
 			echo "unknown command $1 in ${FUNCNAME} (${BASH_SOURCE})" 1>&2
-		;;
+			;;
 	esac
 }

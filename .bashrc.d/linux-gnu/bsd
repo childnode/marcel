@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+function bsd() {
+	case "$1" in
+		"netstat -r")
+			echo -e ${BLUE}"hint: it's called 'netstat -r' or 'route'"${NO_COLOR}
+			shift
+			/usr/bin/env netstat -r $@
+			;;
+		"pbpaste")
+			echo -e ${BLUE}"hint: it's called xsel"${NO_COLOR}
+			shift
+			/usr/bin/env xsel
+			;;
+		*)
+			echo "unknown command $1 in ${FUNCNAME} (${BASH_SOURCE})" 1>&2
+			;;
+	esac
+}
