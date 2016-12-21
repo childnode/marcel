@@ -1,0 +1,3 @@
+# since sierra the ssh-agent doesn't behave like the same as before .. for security and OpenSSH compliant issues
+# https://openradar.appspot.com/27348363
+ssh-add -A
