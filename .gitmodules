@@ -28,3 +28,24 @@
 [submodule "gists/bitbucket/childnode/2015-06-21_kyAAM_plasticscm-addcurrentworkdir-batch-task"]
 	path = gists/bitbucket/childnode/2015-06-21_kyAAM_plasticscm-addcurrentworkdir-batch-task
 	url = https://bitbucket.org/snippets/childnode/kyAAM/plasticscm-addcurrentworkdir-batch-task.git
+[submodule "gists/github/childnode/d35cf810dd28775ac5c0e491107215fd"]
+	path = gists/github/childnode/d35cf810dd28775ac5c0e491107215fd
+	url = https://gist.github.com/d35cf810dd28775ac5c0e491107215fd.git
+[submodule "gists/github/childnode/18de20f4448692257aa3e99c8319b70d"]
+	path = gists/github/childnode/18de20f4448692257aa3e99c8319b70d
+	url = https://gist.github.com/childnode/18de20f4448692257aa3e99c8319b70d
+[submodule "gists/github/childnode/eb3199790f2f82785f62c3150f352ede"]
+	path = gists/github/childnode/eb3199790f2f82785f62c3150f352ede
+	url = https://gist.github.com/eb3199790f2f82785f62c3150f352ede
+[submodule "gists/github/childnode/da08e8a6f989ce0f94077ae1a6b1573b"]
+	path = gists/github/childnode/da08e8a6f989ce0f94077ae1a6b1573b
+	url = https://gist.github.com/da08e8a6f989ce0f94077ae1a6b1573b
+[submodule "gists/github/childnode/a175d954_ext.props.gradle_secret"]
+	path = gists/github/childnode/a175d954_ext.props.gradle_secret
+	url = https://gist.github.com/a175d954962dd675a8cebd25d3e94eb5.git
+[submodule "gists/github/childnode/9741c4d1_idea.warnGenerateWorkspace.gradle_secret"]
+	path = gists/github/childnode/9741c4d1_idea.warnGenerateWorkspace.gradle_secret
+	url = https://gist.github.com/9741c4d1877d7d4284bb8ab49d3886dd.git
+[submodule "gists/github/childnode/85958ff8_extendedHelp.gradle_secret"]
+	path = gists/github/childnode/85958ff8_extendedHelp.gradle_secret
+	url = https://gist.github.com/childnode/85958ff834e2213ec44902c1a38503a4.git
