@@ -172,7 +172,13 @@
 	autocrlf = input
 	safecrlf = warn
 	excludesfile = ~/.gitignore_global
-	whitespace = indent-with-non-tab,tabwidth=4
+	## defaults:
+	# whitespace = blank-at-eol,blank-at-eof,space-before-tab
+	# whitespace = -indent-with-non-tab,-tab-in-indent,-cr-at-eol
+	## hint: indent-with-non-tab means "prefer tabs, not prefer spaces!!"
+	## hint: -trailing-space == -blank-at-eol,-blank-at-eof
+	## hint: tabwidth=8
+	whitespace = tab-in-indent
 
 [apply]
 	whitespace = fix
