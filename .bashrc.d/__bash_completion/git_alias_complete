@@ -1,0 +1,4 @@
+## http://stackoverflow.com/questions/342969
+__git_complete g _git
+
+# git-alias | grep -v '^[^=]*=\s*\!' | awk -F' ' '{ if ($2 != "=" || $3 == "") {print "Warning: `"$0"` not translated into completion"; } else { print "__git_complete "$1" _git_"$3 }  }'

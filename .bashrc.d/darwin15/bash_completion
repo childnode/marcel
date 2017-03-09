@@ -11,3 +11,5 @@ if [ -f "$bc_cmd" ]; then
 else
     echo -e $RED"--- bash_completion missing"$NO_COLOR
 fi
+
+[ -d ~/.bashrc.d/__${BASH_SOURCE##*/} ] && . ~/.bashrc.d/helper/sourceCompletions.sh "bash_completion extensions" ~/.bashrc.d/__${BASH_SOURCE##*/}/*
