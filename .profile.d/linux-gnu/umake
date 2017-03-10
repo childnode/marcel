@@ -1,0 +1,2 @@
+# Ubuntu make installation of Ubuntu Make binary symlink
+[ -d "$HOME/.local/share/umake/bin" ] && PATH=$HOME/.local/share/umake/bin:$PATH
