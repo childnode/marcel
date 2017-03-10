@@ -1,9 +1,10 @@
-bc_cmd="/opt/local/etc/bash_completion"
-if [ -f "$(which brew)" ]; then
-    bc_cmd_brew=$(brew --prefix)"/etc/bash_completion"
-    if [ -f "$bc_cmd_brew" ]; then
-        bc_cmd=$bc_cmd_brew
-    fi
+# enable bash completion in interactive shells
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    bc_cmd=/usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    bc_cmd=/etc/bash_completion
+  fi
 fi
 
 if [ -f "$bc_cmd" ]; then
@@ -12,5 +13,6 @@ else
     echo -e $RED"--- bash_completion missing"$NO_COLOR
     return 1
 fi
+
 
 [ -d ~/.bashrc.d/__${BASH_SOURCE##*/} ] && . ~/.bashrc.d/helper/sourceCompletions.sh "bash_completion extensions" ~/.bashrc.d/__${BASH_SOURCE##*/}/*
