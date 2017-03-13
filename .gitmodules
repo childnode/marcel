@@ -49,3 +49,6 @@
 [submodule "gists/github/childnode/85958ff8_extendedHelp.gradle_secret"]
 	path = gists/github/childnode/85958ff8_extendedHelp.gradle_secret
 	url = https://gist.github.com/childnode/85958ff834e2213ec44902c1a38503a4.git
+[submodule "gists/github/childnode/e7ef876c_html2ical_secret"]
+	path = gists/github/childnode/e7ef876c_html2ical_secret
+	url = https://gist.github.com/childnode/e7ef876c26818711eba9889838040406
