@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+# adding local binaries
+export PATH=$PATH:~/bin
+
+for binSubDir in '~/bin' $(find ~/bin/ -type d -name work_*); do 
+	for rcTermOrOSType in '' $TERM $TERM_PROGRAM $HOSTTYPE $MACHTYPE $OSTYPE; do
+		for rcBinPath in ${binSubDir}/${rcTermOrOSType}; do
+			[[ -n "${DEBUG}" ]] && echo "adding binDir ${rcBinPath}"
+            [[ -d ${rcBinPath} ]] && export PATH=$PATH:$(dirname ${rcBinPath}/.)
+		done
+	done
+done
+unset binSubDir
+unset rcTermOrOSType
+unset rcBinPath
