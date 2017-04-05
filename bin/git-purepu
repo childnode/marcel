@@ -3,5 +3,5 @@ if [ "$1" == "--commit" ]; then
     git ci;
     shift;
 fi
-git pull --rebase &&
+git pull --rebase=preserve &&
 git push $@
