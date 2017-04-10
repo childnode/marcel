@@ -52,3 +52,6 @@
 [submodule "gists/github/childnode/e7ef876c_html2ical_secret"]
 	path = gists/github/childnode/e7ef876c_html2ical_secret
 	url = https://gist.github.com/childnode/e7ef876c26818711eba9889838040406
+[submodule "gists/github/childnode/d15cd5e9_atlassian-confluence-config"]
+	path = gists/github/childnode/d15cd5e9_atlassian-confluence-config
+	url = https://gist.github.com/d15cd5e906a93fc1e11dcbdd55233b75

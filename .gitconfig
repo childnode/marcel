@@ -212,6 +212,10 @@
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = git://github.com:
 	pushInsteadOf = https://github.com/
+[url "git@gist.github.com:"]
+	pushInsteadOf = git://gist.github.com/childnode/
+	pushInsteadOf = git://gist.github.com:childnode/
+	pushInsteadOf = https://gist.github.com/childnode/
 
 [url "https://gitorious.org"]
 	insteadOf = git://gitorious.org/
