@@ -127,6 +127,7 @@
 [user]
 	useConfigOnly = true
 	name = Marcel Trautwein
+        email = ""
 
 [diff]
 	tool = p4merge
@@ -169,7 +170,7 @@
 
 
 [core]
-	autocrlf = input
+        autocrlf = false
 	safecrlf = warn
 	excludesfile = ~/.gitignore_global
 	## defaults:
