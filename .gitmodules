@@ -55,3 +55,6 @@
 [submodule "gists/github/childnode/d15cd5e9_atlassian-confluence-config"]
 	path = gists/github/childnode/d15cd5e9_atlassian-confluence-config
 	url = https://gist.github.com/d15cd5e906a93fc1e11dcbdd55233b75
+[submodule "gists/github/childnode/4a0de936_gradle_buildSrc_dogfood"]
+        path = gists/github/childnode/4a0de936_gradle_buildSrc_dogfood
+        url = https://gist.github.com/4a0de9365d9d26bbe0f33259a589959a
