@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ## http://stackoverflow.com/questions/342969
 __git_complete g _git
 
