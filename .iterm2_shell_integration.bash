@@ -1,0 +1,1 @@
+.bashrc.d/iTerm.app/iterm2_shell_integration.bash
