@@ -4,4 +4,4 @@ export JDK_HOME=${JDK_HOME:-$([[ -x $(/usr/libexec/java_home -F)/bin/javac ]] &&
 
 # quit if not interactive
 [[ $- != *i* ]] && return
-echo -e ${BLUE:-}"(i) using JDK_HOME for "$([ -f $JDK_HOME/bin/javac ] && $JDK_HOME/bin/javac -version 2>&1 || echo "UNKNOWN")${NO_COLOR:-}
+[ -n "${DEBUG}" ] && echo -e ${BLUE:-}"(i) using JDK_HOME for "$([ -f $JDK_HOME/bin/javac ] && $JDK_HOME/bin/javac -version 2>&1 || echo "UNKNOWN")${NO_COLOR:-}

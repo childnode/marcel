@@ -5,5 +5,5 @@
 # quit if not interactive
 [[ $- != *i* ]] && return
 
-echo -e ${BLUE:-}"(i) using env "$(java -version -1  2>&1 | grep "^java version")${NO_COLOR:-}
-echo -e ${BLUE:-}"(i) using JAVA_HOME for "$([ -f ${JAVA_HOME}/bin/java ] && ${JAVA_HOME}/bin/java -version 2>&1  | grep "^java version" || echo "UNKNOWN")${NO_COLOR:-}
+[ -n "${DEBUG}" ] && echo -e ${BLUE:-}"(i) using env "$(java -version -1  2>&1 | grep "^java version")${NO_COLOR:-}
+[ -n "${DEBUG}" ] && echo -e ${BLUE:-}"(i) using JAVA_HOME for "$([ -f ${JAVA_HOME}/bin/java ] && ${JAVA_HOME}/bin/java -version 2>&1  | grep "^java version" || echo "UNKNOWN")${NO_COLOR:-}
