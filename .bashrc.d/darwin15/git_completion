@@ -1,1 +1,2 @@
-. ~/.bashrc.d/helper/sourceCompletions.sh "git-flow-completion" ~/Applications/bash_completion.d/git-flow-completion.bash
+#!/usr/bin/env bash
+## . ~/.bashrc.d/helper/sourceCompletions.sh "git-flow-completion" $(brew --prefix git-flow)/etc/bash_completion.d/git-flow-completion.bash
