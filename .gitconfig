@@ -54,6 +54,15 @@
 
 	up = !gitup .
 	
+        ####################################################################################################
+        ## some nice aliases from https://developer.atlassian.com/blog/2015/05/the-power-of-git-subtree/
+        ####################################################################################################
+    # the acronym stands for "subtree add" // original `sba`
+    sadd = "!f() { git subtree add --prefix $2 $1 $3 --squash; }; f"
+    # the acronym stands for "subtree update" // original `sbu`
+    sup = "!f() { git subtree pull --prefix $2 $1 $3; }; f"
+    supq = "!f() { git subtree pull --prefix $2 $1 $3 --squash; }; f"
+
 	####################################################################################################
 	## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
 	####################################################################################################
@@ -117,16 +126,21 @@
 	sl = stash list
 	sa = stash apply
 	ss = stash save
+        stree = subtree
+        smu = submodule update
+        smui = submodule update --init
+        smi = "!git smui"
+        spurm = "!f() { git f && git rebase origin/master; }; f"
 	####################################################################################################
 	
 [filter "lfs"]
+        process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
 [user]
 	useConfigOnly = true
-	name = Marcel 'childNo͡.de'' Trautwein
+	name = Marcel 'childNo͡.de' Trautwein
 	email = ""
 
 [diff]
@@ -136,6 +150,8 @@
 
 [merge]
 	tool = p4merge
+    branchdesc = true
+    log = true ## defaults to 20
 [mergetool]
 	prompt = true
 	keepTemporaries = false
@@ -204,6 +220,7 @@
 [push]
 	default = simple
 	followTags = true
+        recurseSubmodules = on-demand
 
 [url "https://github.com/"]
 	insteadOf = git://github.com/
@@ -227,3 +244,5 @@
 
 [url "git@bitbucket.org:"]
 	insteadOf = https://bitbucket.org
+[pull]
+        rebase = preserve
