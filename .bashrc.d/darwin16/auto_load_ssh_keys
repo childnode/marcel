@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # since sierra the ssh-agent doesn't behave like the same as before .. for security and OpenSSH compliant issues
 # https://openradar.appspot.com/27348363
-ssh-add -A
+[ -z "$(C= ssh-add -l | grep -v 'The agent has no identities')" ] && ssh-add -A
