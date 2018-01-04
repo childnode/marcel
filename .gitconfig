@@ -45,23 +45,24 @@
         cpu = puffpu --commit origin HEAD
         cpru = purepu --commit origin HEAD
 
-        d = diff
-        dh = diff HEAD --
-        dh1 = diff HEAD~ HEAD --
+        d = diff -b
+        dchk = !git d --check
+        dh = !git d HEAD --
+        dh1 = !git d HEAD~ HEAD --
         sm = submodule
         
         limbo = fsck --unreachable
 
         up = !gitup .
         
-        ####################################################################################################
-        ## some nice aliases from https://developer.atlassian.com/blog/2015/05/the-power-of-git-subtree/
-        ####################################################################################################
-    # the acronym stands for "subtree add" // original `sba`
-    sadd = "!f() { git subtree add --prefix $2 $1 $3 --squash; }; f"
-    # the acronym stands for "subtree update" // original `sbu`
-    sup = "!f() { git subtree pull --prefix $2 $1 $3; }; f"
-    supq = "!f() { git subtree pull --prefix $2 $1 $3 --squash; }; f"
+	####################################################################################################
+	## some nice aliases from https://developer.atlassian.com/blog/2015/05/the-power-of-git-subtree/
+	####################################################################################################
+	# the acronym stands for "subtree add" // original `sba`
+	sadd = "!f() { git subtree add --prefix $2 $1 $3 --squash; }; f"
+	# the acronym stands for "subtree update" // original `sbu`
+	sup = "!f() { git subtree pull --prefix $2 $1 $3; }; f"
+	supq = "!f() { git subtree pull --prefix $2 $1 $3 --squash; }; f"
 
         ####################################################################################################
         ## some nice aliases from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
@@ -112,8 +113,8 @@
         cl = clone
         co = checkout
         # br = branch 
-        dw = diff --word-diff
-        dc = diff --cached
+        dw = !git d --word-diff
+        dc = !git d --cached
         r = reset
         r1 = reset HEAD^
         r2 = reset HEAD^^
@@ -126,17 +127,18 @@
         sl = stash list
         sa = stash apply
         ss = stash save
-        stree = subtree
-        smu = submodule update
-        smui = submodule update --init
-        smi = "!git smui"
-        spurm = "!f() { git f && git rebase origin/master; }; f"
+	stree = subtree
+	smu = submodule update
+	smui = submodule update --init
+	smi = "!git smui"
+	spurm = "!f() { git f && git rebase origin/master; }; f"
+	pohm = push -u origin HEAD:master
         smur = submodule update --remote
         pohm = push origin HEAD:master
         ####################################################################################################
         
 [filter "lfs"]
-        process = git-lfs filter-process
+	process = git-lfs filter-process
         required = true
         clean = git-lfs clean -- %f
         smudge = git-lfs smudge -- %f
@@ -147,13 +149,14 @@
 
 [diff]
         tool = p4merge
+        submodule=log
 [difftool]
         prompt = false
 
 [merge]
         tool = p4merge
-    branchdesc = true
-    log = true ## defaults to 20
+	branchdesc = true
+	log = true ## defaults to 20
 [mergetool]
         prompt = true
         keepTemporaries = false
@@ -188,7 +191,7 @@
 
 
 [core]
-        autocrlf = false
+	autocrlf = false
         safecrlf = warn
         excludesfile = ~/.gitignore_global
         ## defaults:
@@ -211,6 +214,7 @@
 [status]
         submoduleSummary = true
         branch = true
+        relativePaths = false
 
 [tag]
         forceSignAnnotated = true
@@ -222,7 +226,7 @@
 [push]
         default = simple
         followTags = true
-        recurseSubmodules = on-demand
+	recurseSubmodules = on-demand
 
 [url "https://github.com/"]
         insteadOf = git://github.com/
@@ -236,7 +240,7 @@
         pushInsteadOf = git://gist.github.com/childnode/
         pushInsteadOf = git://gist.github.com:childnode/
         pushInsteadOf = https://gist.github.com/childnode/
-        pushInsteadOf = https://gist.github.com/
+	pushInsteadOf = https://gist.github.com/
 
 [url "https://gitorious.org"]
         insteadOf = git://gitorious.org/
@@ -247,4 +251,4 @@
 [url "git@bitbucket.org:"]
         insteadOf = https://bitbucket.org
 [pull]
-        rebase = preserve
+	rebase = preserve
