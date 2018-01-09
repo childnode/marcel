@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+prefix=$(brew --prefix asdf)
+[[ -s "${prefix}/asdf.sh" ]] && source ${prefix}/asdf.sh
