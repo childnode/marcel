@@ -200,7 +200,7 @@
 
 
 [core]
-	autocrlf = false
+        autocrlf = input
 	safecrlf = warn
 	excludesfile = ~/.gitignore_global
 	## defaults:
