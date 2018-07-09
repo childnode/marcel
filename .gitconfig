@@ -142,6 +142,8 @@
 	smur = submodule update --remote
 	pohm = push origin HEAD:master
 	tagsref = !git tags --format \"%(objecttype) %(*refname) %(objectname) @ %(*objectname)\"
+        desc = describe
+        descr = describe
 	####################################################################################################
 	
 [filter "lfs"]
