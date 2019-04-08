@@ -21,6 +21,8 @@ gradle-app.setting
 !/.vim/
 !/.vimrc
 !/bin/
+!/.editorconfig
+!/.gitattributes
 !/.gitignore
 !/.gitconfig
 !/.gitignore_global
@@ -32,3 +34,4 @@ gradle-app.setting
 !/.xchat2
 !/gists/
 !.iterm2_shell_integration.bash
+!/.tmux.conf
