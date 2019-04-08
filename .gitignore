@@ -4,6 +4,10 @@
 yankring_history_*.txt
 gradle-app.setting
 
+# backup files
+*.old
+*.bak
+
 # bash
 /.bash_history
 
