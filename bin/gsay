@@ -1,0 +1,27 @@
+#!/bin/bash
+export GOOGLE_APPLICATION_CREDENTIALS=Downloads/gcloud/My\ First\ Project-687b8150e43c.json
+
+read -p "TTS: "
+while [ -n "$REPLY" ] ; do
+curl $1 -sSL \
+    -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+    -H "Content-Type: application/json; charset=utf-8" \
+    --data "{
+  'audioConfig': {
+    'audioEncoding': 'LINEAR16',
+    'pitch': 0,
+    'speakingRate': 1
+  },
+  'input': {
+    'text': \"${REPLY//\"/\\\"}\"
+  },
+  'voice': {
+    'languageCode': 'de-DE',
+    'name': 'de-DE-Standard-B'
+  }
+}" \
+    "https://texttospeech.googleapis.com/v1/text:synthesize" | jq -M -r .audioContent | base64 --decode > /tmp/gsay_tts.out&& afplay /tmp/gsay_tts.out
+read -p "TTS: "
+
+done
+exit 0

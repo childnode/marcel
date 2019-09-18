@@ -1,0 +1,9 @@
+#!/bin/bash
+
+read -p "TTS: "
+while [ -n "$REPLY" ] ; do
+    echo "${REPLY//\"/\\\"}" | say -v ${1:-Anna}
+read -p "TTS: "
+
+done
+exit 0
