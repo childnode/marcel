@@ -15,16 +15,15 @@ curl $1 -sSL \
     -H "Content-Type: application/json; charset=utf-8" \
     --data "{
   'audioConfig': {
-    'audioEncoding': 'LINEAR16',
-    'pitch': 0,
-    'speakingRate': 1
+    'audioEncoding': 'MP3'
   },
   'input': {
     'text': \"${REPLY//\"/\\\"}\"
   },
   'voice': {
     'languageCode': 'de-DE',
-    'name': 'de-DE-${speechType}-B'
+    'name': 'de-DE-${speechType}-B',
+    'ssmlGender': 'MALE'
   }
 }" \
     "https://texttospeech.googleapis.com/v1/text:synthesize" | jq -M -r .audioContent | base64 --decode > /tmp/gsay_tts.out&& afplay /tmp/gsay_tts.out
