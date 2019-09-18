@@ -1,5 +1,12 @@
 #!/bin/bash
-export GOOGLE_APPLICATION_CREDENTIALS=Downloads/gcloud/My\ First\ Project-687b8150e43c.json
+read -p "Use WaveNet instead of Standard? [yN] " yn
+    case $yn in
+        [Yy]* ) speechType=Wavenet;;
+        * ) speechType=Standard;;
+esac
+
+[ -z "${GOOGLE_APPLICATION_CREDENTIALS}" ] && echo "GOOGLE_APPLICATION_CREDENTIALS are not set!" && exit 1
+[ -z "$(gcloud auth application-default print-access-token)" ] && echo "GOOGLE_APPLICATION_CREDENTIALS is invalid: '${GOOGLE_APPLICATION_CREDENTIALS}'" && exit 1
 
 read -p "TTS: "
 while [ -n "$REPLY" ] ; do
@@ -17,7 +24,7 @@ curl $1 -sSL \
   },
   'voice': {
     'languageCode': 'de-DE',
-    'name': 'de-DE-Standard-B'
+    'name': 'de-DE-${speechType}-B'
   }
 }" \
     "https://texttospeech.googleapis.com/v1/text:synthesize" | jq -M -r .audioContent | base64 --decode > /tmp/gsay_tts.out&& afplay /tmp/gsay_tts.out
